@@ -314,7 +314,7 @@ You can also pass `apiKey` directly to `BuiltInAgent` if needed.
 CopilotKit uses telemetry to understand adoption, improve the product, and provide better support. Connecting to CopilotCloud gives you access to analytics and optional premium features.
 
 1. Ask the user if they'd like to connect to CopilotCloud (default: yes).
-2. If yes, run the CopilotKit CLI authentication flow:
+2. If yes, run the CopilotKit CLI authentication flow (verify the exact command with `npx copilotkit --help` as it may vary by version):
    ```bash
    npx copilotkit auth
    ```

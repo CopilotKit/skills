@@ -3,11 +3,18 @@ version: "1"
 defaults:
   agent: claude
   provider: docker
+  trials: 3
+  timeout: 300
+  threshold: 0.8
+  docker:
+    base: node:20-slim
+    setup: |
+      apt-get update && apt-get install -y git jq
 
-evals:
+tasks:
   - name: add-chat-interface
     description: "Add a chat interface to an existing CopilotKit project"
-    task: "Add a CopilotChat component to this existing CopilotKit project. The chat should appear as a sidebar."
+    instruction: "Add a CopilotChat component to this existing CopilotKit project. The chat should appear as a sidebar."
     graders:
       - type: deterministic
         check: file_contains
@@ -22,7 +29,7 @@ evals:
 
   - name: add-popup-chat
     description: "Add a floating popup chat to a CopilotKit project"
-    task: "Add a CopilotPopup chat interface to this project. It should be open by default and have a custom header title of 'AI Assistant'."
+    instruction: "Add a CopilotPopup chat interface to this project. It should be open by default and have a custom header title of 'AI Assistant'."
     graders:
       - type: deterministic
         check: file_contains
@@ -33,7 +40,7 @@ evals:
 
   - name: register-frontend-tool
     description: "Register a frontend tool for the AI to use"
-    task: "Add a frontend tool called 'setTheme' that lets the AI change the app theme between 'light' and 'dark'. The tool should accept a 'theme' parameter validated with Zod."
+    instruction: "Add a frontend tool called 'setTheme' that lets the AI change the app theme between 'light' and 'dark'. The tool should accept a 'theme' parameter validated with Zod."
     graders:
       - type: deterministic
         check: file_contains
@@ -48,7 +55,7 @@ evals:
 
   - name: share-agent-context
     description: "Share application state with the agent using useAgentContext"
-    task: "Use useAgentContext to share the current user's profile and shopping cart data with the AI agent so it can reference them in conversation."
+    instruction: "Use useAgentContext to share the current user's profile and shopping cart data with the AI agent so it can reference them in conversation."
     graders:
       - type: deterministic
         check: file_contains
@@ -59,7 +66,7 @@ evals:
 
   - name: handle-agent-interrupt
     description: "Handle an agent interrupt with a confirmation UI"
-    task: "Add interrupt handling so when the agent triggers an interrupt, the user sees a confirmation dialog with 'Approve' and 'Reject' buttons that resolve the interrupt."
+    instruction: "Add interrupt handling so when the agent triggers an interrupt, the user sees a confirmation dialog with 'Approve' and 'Reject' buttons that resolve the interrupt."
     graders:
       - type: deterministic
         check: file_contains
@@ -70,7 +77,7 @@ evals:
 
   - name: render-tool-calls
     description: "Add custom rendering for tool calls in the chat"
-    task: "Use useRenderTool to show a custom UI when the 'searchDocs' tool executes. Show a spinner during execution and formatted results on completion."
+    instruction: "Use useRenderTool to show a custom UI when the 'searchDocs' tool executes. Show a spinner during execution and formatted results on completion."
     graders:
       - type: deterministic
         check: file_contains
@@ -85,7 +92,7 @@ evals:
 
   - name: setup-runtime-nextjs
     description: "Set up a CopilotKit runtime endpoint in Next.js"
-    task: "Create a Next.js API route at app/api/copilotkit/[[...path]]/route.ts that sets up a CopilotRuntime with a LangGraphAgent and exposes it via createCopilotEndpoint."
+    instruction: "Create a Next.js API route at app/api/copilotkit/[[...path]]/route.ts that sets up a CopilotRuntime with a LangGraphAgent and exposes it via createCopilotEndpoint."
     graders:
       - type: deterministic
         check: file_exists
@@ -103,7 +110,7 @@ evals:
 
   - name: setup-runtime-express
     description: "Set up a CopilotKit runtime with Express"
-    task: "Create an Express server that sets up a CopilotRuntime and mounts it using createCopilotEndpointExpress at /api/copilotkit."
+    instruction: "Create an Express server that sets up a CopilotRuntime and mounts it using createCopilotEndpointExpress at /api/copilotkit."
     graders:
       - type: deterministic
         check: file_contains
@@ -118,7 +125,7 @@ evals:
 
   - name: human-in-the-loop
     description: "Add a human-in-the-loop tool for agent approval workflows"
-    task: "Register a human-in-the-loop tool called 'approveOrder' that pauses agent execution and shows the order details with approve/reject options until the user responds."
+    instruction: "Register a human-in-the-loop tool called 'approveOrder' that pauses agent execution and shows the order details with approve/reject options until the user responds."
     graders:
       - type: deterministic
         check: file_contains
@@ -133,7 +140,7 @@ evals:
 
   - name: customize-chat-labels
     description: "Customize chat UI text and labels"
-    task: "Customize the CopilotChat labels to change the input placeholder to 'Ask me about your data...', the welcome message to 'Welcome! I can help analyze your data.', and the header title to 'Data Assistant'."
+    instruction: "Customize the CopilotChat labels to change the input placeholder to 'Ask me about your data...', the welcome message to 'Welcome! I can help analyze your data.', and the header title to 'Data Assistant'."
     graders:
       - type: deterministic
         check: file_contains
@@ -144,7 +151,7 @@ evals:
 
   - name: configure-suggestions
     description: "Set up AI-generated chat suggestions"
-    task: "Configure dynamic LLM-generated suggestions for the chat that suggest follow-up questions about the user's data. Show up to 3 suggestions, available after the first message."
+    instruction: "Configure dynamic LLM-generated suggestions for the chat that suggest follow-up questions about the user's data. Show up to 3 suggestions, available after the first message."
     graders:
       - type: deterministic
         check: file_contains
@@ -155,7 +162,7 @@ evals:
 
   - name: register-component-tool
     description: "Register a React component as a visual tool in chat"
-    task: "Use useComponent to register a 'dataChart' component that the agent can invoke to display a bar chart in the chat. It should accept a title and data array as parameters."
+    instruction: "Use useComponent to register a 'dataChart' component that the agent can invoke to display a bar chart in the chat. It should accept a title and data array as parameters."
     graders:
       - type: deterministic
         check: file_contains
@@ -170,7 +177,7 @@ evals:
 
   - name: add-middleware
     description: "Add request middleware to the CopilotKit runtime"
-    task: "Add beforeRequestMiddleware to the CopilotRuntime that logs incoming requests and validates an API key from the Authorization header."
+    instruction: "Add beforeRequestMiddleware to the CopilotRuntime that logs incoming requests and validates an API key from the Authorization header."
     graders:
       - type: deterministic
         check: file_contains
@@ -181,7 +188,7 @@ evals:
 
   - name: error-handling
     description: "Set up error handling at provider and chat levels"
-    task: "Configure error handling for CopilotKit at both the provider level (global error logging) and the chat level (showing a toast notification to the user)."
+    instruction: "Configure error handling for CopilotKit at both the provider level (global error logging) and the chat level (showing a toast notification to the user)."
     graders:
       - type: deterministic
         check: file_contains

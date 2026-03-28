@@ -12,7 +12,7 @@ The license key is a lightweight identifier that connects your local CopilotKit 
 
 ## The `npx copilotkit auth` flow
 
-Running the CLI command starts an interactive authentication:
+Running the CLI command starts an interactive authentication (verify the exact command with `npx copilotkit --help` as it may vary by version):
 
 ```bash
 npx copilotkit auth
