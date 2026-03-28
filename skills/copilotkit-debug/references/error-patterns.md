@@ -2,7 +2,7 @@
 
 ## V1 Error Codes (`CopilotKitErrorCode`)
 
-Used by `@copilotkit/runtime` and `@copilotkit/react-core`. Defined in `packages/v1/shared/src/utils/errors.ts`.
+Legacy error codes from the v1 runtime layer. These still surface in `@copilotkit/*` packages since they wrap v2 internally. Defined in `packages/v1/shared/src/utils/errors.ts`.
 
 ### NETWORK_ERROR
 - **HTTP Status**: 503
@@ -52,8 +52,8 @@ Used by `@copilotkit/runtime` and `@copilotkit/react-core`. Defined in `packages
 ### VERSION_MISMATCH
 - **HTTP Status**: 400
 - **Severity**: INFO (dev only)
-- **Cause**: `@copilotkit/runtime`, `@copilotkit/react-core`, and `@copilotkit/runtime-client-gql` are on different versions.
-- **Resolution**: Ensure all `@copilotkit/*` packages are the same version. Run `npm ls @copilotkit/runtime @copilotkit/react-core`.
+- **Cause**: `@copilotkit/*` packages are on different versions.
+- **Resolution**: Ensure all `@copilotkit/*` packages are the same version. Run `npm ls @copilotkit/runtime @copilotkit/react`.
 
 ### CONFIGURATION_ERROR
 - **HTTP Status**: 400
