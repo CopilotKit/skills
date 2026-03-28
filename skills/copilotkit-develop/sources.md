@@ -18,7 +18,7 @@ Files read from the CopilotKit codebase to generate this skill's references.
 - packages/v2/react/src/hooks/use-render-tool-call.tsx
 - packages/v2/react/src/hooks/use-render-activity-message.tsx
 - packages/v2/react/src/hooks/use-render-custom-messages.tsx
-- packages/v2/react/src/components/copilot-kit-provider.tsx
+- packages/v2/react/src/providers/CopilotKitProvider.tsx
 - packages/v2/react/src/components/chat/copilot-chat.tsx
 - packages/v2/react/src/components/chat/copilot-popup.tsx
 - packages/v2/react/src/components/chat/copilot-sidebar.tsx
@@ -30,7 +30,7 @@ Files read from the CopilotKit codebase to generate this skill's references.
 - packages/v2/react/src/components/chat/copilot-modal-header.tsx
 - packages/v2/react/src/components/chat/copilot-popup-view.tsx
 - packages/v2/react/src/components/chat/copilot-sidebar-view.tsx
-- packages/v2/react/src/components/inspector/copilot-kit-inspector.tsx
+- packages/v2/react/src/components/CopilotKitInspector.tsx
 - packages/v2/react/src/types/frontend-tool.ts
 - packages/v2/react/src/types/tool-call-renderer.ts
 - packages/v2/react/src/types/activity-message-renderer.ts
@@ -54,16 +54,13 @@ Files read from the CopilotKit codebase to generate this skill's references.
 
 ## runtime-api.md
 
-- packages/v2/runtime/src/copilot-runtime.ts
-- packages/v2/runtime/src/copilot-sse-runtime.ts
-- packages/v2/runtime/src/copilot-intelligence-runtime.ts
-- packages/v2/runtime/src/endpoint/hono.ts
-- packages/v2/runtime/src/endpoint/express.ts
-- packages/v2/runtime/src/endpoint/routes.ts
+- packages/v2/runtime/src/runtime.ts
+- packages/v2/runtime/src/endpoints/hono.ts
+- packages/v2/runtime/src/endpoints/express.ts
 - packages/v2/runtime/src/types/runtime-options.ts
 - packages/v2/runtime/src/types/middleware.ts
-- packages/v2/runtime/src/runners/agent-runner.ts
-- packages/v2/runtime/src/runners/in-memory-agent-runner.ts
-- packages/v2/runtime/src/runners/intelligence-agent-runner.ts
-- packages/v2/runtime/src/intelligence/copilotkit-intelligence.ts
+- packages/v2/runtime/src/runner/agent-runner.ts
+- packages/v2/runtime/src/runner/in-memory.ts
+- packages/v2/runtime/src/runner/intelligence.ts
+- packages/v2/runtime/src/intelligence-platform/client.ts
 - packages/v2/runtime/src/transcription/transcription-service.ts
