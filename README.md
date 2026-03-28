@@ -385,12 +385,11 @@ CopilotKit/skills/
 
 ### Versioning
 
-Claude Code checks `marketplace.json` for plugin updates. When releasing changes:
+Claude Code plugin updates are version-string based. The cache is keyed by version — commits without a version bump are invisible to users.
 
-1. Bump the version in `.claude-plugin/plugin.json`
+1. Bump the version in `.claude-plugin/plugin.json` with every meaningful push
 2. A GitHub Actions workflow automatically syncs the version to `marketplace.json`
-
-Only `plugin.json` needs to be bumped manually — the sync is automatic.
+3. Users pick up new versions on their **next Claude Code session start** — there is no mid-session update
 
 ---
 
