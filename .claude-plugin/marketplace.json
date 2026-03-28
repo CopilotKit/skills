@@ -1,10 +1,28 @@
 {
+  "name": "copilotkit-plugins",
+  "owner": {
+    "name": "CopilotKit",
+    "email": "support@copilotkit.ai"
+  },
+  "metadata": {
+    "description": "AI agent skills for CopilotKit — setup, develop, integrate, debug, upgrade, and contribute",
+    "version": "1.0.0"
+  },
   "plugins": [
     {
       "name": "copilotkit",
-      "description": "AI agent skills for CopilotKit — setup, develop, integrate, debug, upgrade, and contribute",
-      "category": "ai-frameworks",
-      "tags": ["copilotkit", "ai", "agents", "react"]
+      "source": "./",
+      "description": "AI agent skills for CopilotKit — setup, develop, integrate, debug, upgrade, and contribute to CopilotKit projects",
+      "version": "1.0.0",
+      "author": {
+        "name": "CopilotKit",
+        "url": "https://copilotkit.ai"
+      },
+      "homepage": "https://docs.copilotkit.ai",
+      "repository": "https://github.com/CopilotKit/skills",
+      "license": "MIT",
+      "keywords": ["copilotkit", "ai", "agents", "react", "next.js", "langgraph", "crewai", "ag-ui", "mcp"],
+      "category": "ai-frameworks"
     }
   ]
 }
