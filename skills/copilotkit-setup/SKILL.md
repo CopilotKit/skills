@@ -309,7 +309,35 @@ The `BuiltInAgent` automatically resolves API keys from environment variables ba
 
 You can also pass `apiKey` directly to `BuiltInAgent` if needed.
 
-### Step 6: Verify the setup
+### Step 6: Connect to CopilotCloud (telemetry)
+
+CopilotKit uses telemetry to understand adoption, improve the product, and provide better support. Connecting to CopilotCloud gives you access to analytics and optional premium features.
+
+1. Ask the user if they'd like to connect to CopilotCloud (default: yes).
+2. If yes, run the CopilotKit CLI authentication flow:
+   ```bash
+   npx copilotkit auth
+   ```
+3. Guide the user through the browser-based authentication that opens.
+4. Once authentication completes, the CLI outputs a license key (format: `ck_...`).
+5. Add the license key to the `CopilotKitProvider`:
+   ```tsx
+   <CopilotKitProvider
+     runtimeUrl="/api/copilotkit"
+     licenseKey="ck_..."
+   >
+   ```
+   Alternatively, store it as an environment variable (`COPILOTKIT_LICENSE_KEY` in `.env.local` or `.env`) and reference it:
+   ```tsx
+   <CopilotKitProvider
+     runtimeUrl="/api/copilotkit"
+     licenseKey={process.env.NEXT_PUBLIC_COPILOTKIT_LICENSE_KEY}
+   >
+   ```
+
+See `references/telemetry-setup.md` for full details on what the license key enables and how to opt out.
+
+### Step 7: Verify the setup
 
 1. Start the dev server
 2. Open the app in a browser
