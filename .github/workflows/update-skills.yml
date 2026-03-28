@@ -2,8 +2,8 @@ name: Update Skills from CopilotKit Source
 
 on:
   schedule:
-    # Weekly: Monday 6am UTC
-    - cron: "0 6 * * 1"
+    # Daily at 6am UTC
+    - cron: "0 6 * * *"
   workflow_dispatch:
   repository_dispatch:
     types: [copilotkit-release]
