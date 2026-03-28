@@ -106,7 +106,7 @@ Key patterns:
 - Route frontend tool calls to `route_end` so CopilotKit handles them client-side
 - Route backend tool calls to `route_follow_up` for the next iteration
 
-### FastAPI Server (agent/main.py)
+### FastAPI Server (agent/server.py)
 
 ```python
 from fastapi import FastAPI

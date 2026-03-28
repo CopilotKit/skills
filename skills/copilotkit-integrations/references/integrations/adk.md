@@ -85,6 +85,12 @@ def before_model_modifier(
         llm_request.config.system_instruction = original_instruction
     return None
 
+def simple_after_model_modifier(
+    callback_context: CallbackContext, llm_response: LlmResponse
+) -> Optional[LlmResponse]:
+    """Stop consecutive tool calling -- lets the agent yield control back."""
+    return None
+
 proverbs_agent = LlmAgent(
     name="ProverbsAgent",
     model="gemini-2.5-flash",
@@ -92,6 +98,7 @@ proverbs_agent = LlmAgent(
     tools=[set_proverbs, get_weather],
     before_agent_callback=on_before_agent,
     before_model_callback=before_model_modifier,
+    after_model_callback=simple_after_model_modifier,
 )
 
 # Wrap with AG-UI adapter
