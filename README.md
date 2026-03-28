@@ -251,14 +251,17 @@ Skills are maintained through a two-stage pipeline:
 
 Reference material in each skill's `references/` directory is auto-generated from the CopilotKit codebase. This includes API signatures, type definitions, configuration schemas, and integration examples extracted directly from source.
 
-### Weekly Maintenance
+### Daily Maintenance
 
-A scheduled pipeline refreshes reference material to stay current with CopilotKit releases:
+A daily pipeline (6am UTC) refreshes reference material to stay current with CopilotKit development:
 
 1. Pulls the latest CopilotKit source
 2. Regenerates `references/` content for each skill
-3. Runs validation to catch breaking changes or new APIs
-4. Opens a PR if references have changed
+3. Detects new integration frameworks and generates guides via Claude API (Strategy 2)
+4. Runs validation to catch breaking changes or new APIs
+5. If changes detected: pushes to a single `auto/update-skills` branch and opens or updates a PR
+
+Daily runs batch into a single open PR — no spam. Each run adds commits to the same branch until someone merges. If no CopilotKit source changes occurred, no PR is created or updated.
 
 SKILL.md files are human-maintained. They are written once during bootstrap and updated manually when the skill's guidance needs to change. The separation between generated references and authored guidance keeps maintenance tractable while ensuring API details stay accurate.
 
