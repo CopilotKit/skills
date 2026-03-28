@@ -183,7 +183,7 @@ For long agent runs, consider:
 
 ## Workflow: "Frontend Tool Not Working"
 
-A frontend tool registered with `useFrontendTool` or `useCopilotAction` is not being called or not returning results.
+A frontend tool registered with `useFrontendTool` is not being called or not returning results.
 
 ### Step 1: Verify tool registration
 

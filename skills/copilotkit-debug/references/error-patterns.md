@@ -141,7 +141,7 @@ Used by `@copilotkit/core`. Defined in `packages/v2/core/src/core/core.ts`. Thes
 
 ### tool_not_found
 - **Cause**: The agent called a tool that is not registered in the frontend.
-- **Resolution**: Ensure `useFrontendTool` or `useCopilotAction` is registered with the correct name before the agent runs.
+- **Resolution**: Ensure `useFrontendTool` is registered with the correct name before the agent runs.
 
 ### agent_not_found
 - **Cause**: The `agentId` passed to `CopilotChat` or `useAgent` does not match any agent in the runtime.

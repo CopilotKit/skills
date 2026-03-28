@@ -106,7 +106,7 @@ Add CopilotKit to a project from scratch.
 - Detects your framework: Next.js App Router, Next.js Pages Router, Remix, or Vite
 - Installs `@copilotkit/*` packages
 - Wires up the v2 `CopilotRuntime` with your LLM provider (OpenAI, Anthropic, Google, etc.)
-- Configures the `CopilotProvider` and verifies the integration works end-to-end
+- Configures the `CopilotKitProvider` and verifies the integration works end-to-end
 
 [Full Documentation](skills/copilotkit-setup/SKILL.md)
 

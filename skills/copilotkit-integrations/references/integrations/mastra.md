@@ -16,9 +16,8 @@ Mastra is a TypeScript-native agent framework. The CopilotKit integration runs e
   "@mastra/memory": "beta",
   "@mastra/libsql": "beta",
   "mastra": "beta",
-  "@copilotkit/react-core": "1.51.1",
-  "@copilotkit/react-ui": "1.51.1",
-  "@copilotkit/runtime": "1.51.1"
+  "@copilotkit/react": "latest",
+  "@copilotkit/runtime": "latest"
 }
 ```
 

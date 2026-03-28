@@ -135,4 +135,4 @@ PydanticAI uses the generic `HttpAgent` from `@ag-ui/client`.
 
 ## Frontend Usage
 
-The frontend is standard CopilotKit -- `useCoAgent` for shared state, `useRenderToolCall` for generative UI, `useHumanInTheLoop` for approval flows. See the main SKILL.md for common patterns.
+The frontend is standard CopilotKit -- `useAgent` for shared state, `useRenderToolCall` for generative UI, `useHumanInTheLoop` for approval flows. See the main SKILL.md for common patterns.

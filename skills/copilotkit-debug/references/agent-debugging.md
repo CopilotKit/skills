@@ -132,18 +132,18 @@ RunFinishedEvent
 **Diagnostic steps**:
 
 1. Verify the agent is emitting state events -- check the SSE stream in the Network tab.
-2. If using `useCopilotAction` with state, ensure the state shape matches what the component expects.
+2. If using `useFrontendTool` with state, ensure the state shape matches what the component expects.
 3. For LangGraph agents: verify `copilotkit_emit_state` events are reaching the frontend (see Python SDK event prefix mismatch, issue #3519).
 
 ### Context Not Reaching Agents
 
-**Symptom**: Agent does not receive application context set via `useCopilotReadable` or similar hooks.
+**Symptom**: Agent does not receive application context set via `useAgentContext` or similar hooks.
 
 **Diagnostic steps**:
 
 1. Context is sent as `forwardedProps` in the AG-UI `RunAgentInput`. Check the request body to `/agent/:id/run`.
 2. For Mastra agents: context propagation through the middleware chain may not work correctly (issue #3426).
-3. Verify that `useCopilotReadable` is called inside the `CopilotKitProvider` tree and before the agent runs.
+3. Verify that `useAgentContext` is called inside the `CopilotKitProvider` tree and before the agent runs.
 
 ## Tool Execution Issues
 
@@ -156,7 +156,7 @@ The agent called a tool name that does not match any registered frontend tool.
 **Diagnostic steps**:
 
 1. List registered tools by checking the AG-UI `Tool[]` array in the request to `/agent/:id/run`.
-2. Ensure `useFrontendTool` or `useCopilotAction` is registered with the exact tool name (case-sensitive).
+2. Ensure `useFrontendTool` is registered with the exact tool name (case-sensitive).
 3. The tool must be registered BEFORE the agent run starts -- if it is registered lazily after mount, a race condition can occur.
 
 ### Tool Arguments Parse Failed

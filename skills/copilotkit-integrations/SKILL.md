@@ -19,7 +19,7 @@ CopilotKit connects to external agent frameworks through the **AG-UI (Agent-UI) 
 1. **Agent server** -- your agent framework runs as an HTTP server (usually FastAPI/uvicorn for Python, or an Express/Next.js route for JS/TS)
 2. **AG-UI adapter** -- a framework-specific adapter translates between the agent's native interface and the AG-UI wire protocol
 3. **CopilotKit runtime** -- the Next.js API route creates a `CopilotRuntime` that connects to the agent via an AG-UI client class
-4. **Frontend** -- React components use `useCoAgent`, `useFrontendTool`, `useRenderToolCall`, and `useHumanInTheLoop` to interact with the agent
+4. **Frontend** -- React components use `useAgent`, `useFrontendTool`, `useRenderToolCall`, and `useHumanInTheLoop` to interact with the agent
 
 ## Supported Integrations
 
@@ -72,14 +72,14 @@ Every integration shares these patterns on the frontend side.
 ### CopilotKit Provider (layout.tsx)
 
 ```tsx
-import { CopilotKit } from "@copilotkit/react-core";
-import "@copilotkit/react-ui/styles.css";
+import { CopilotKitProvider } from "@copilotkit/react";
+import "@copilotkit/react/styles.css";
 
 export default function RootLayout({ children }) {
   return (
-    <CopilotKit runtimeUrl="/api/copilotkit" agent="my_agent_name">
+    <CopilotKitProvider runtimeUrl="/api/copilotkit" agent="my_agent_name">
       {children}
-    </CopilotKit>
+    </CopilotKitProvider>
   );
 }
 ```
@@ -115,10 +115,10 @@ export const POST = async (req: NextRequest) => {
 };
 ```
 
-### Shared State (useCoAgent)
+### Shared State (useAgent)
 
 ```tsx
-const { state, setState } = useCoAgent<{ proverbs: string[] }>({
+const { state, setState } = useAgent<{ proverbs: string[] }>({
   name: "my_agent",
   initialState: { proverbs: [] },
 });
@@ -168,8 +168,7 @@ On the agent side, shared state is managed differently per framework, but the pr
 ## Key Packages
 
 Frontend (all integrations):
-- `@copilotkit/react-core` -- hooks (`useCoAgent`, `useFrontendTool`, `useRenderToolCall`, `useHumanInTheLoop`)
-- `@copilotkit/react-ui` -- UI components (`CopilotSidebar`, `CopilotPopup`)
+- `@copilotkit/react` -- hooks (`useAgent`, `useFrontendTool`, `useRenderToolCall`, `useHumanInTheLoop`) and UI components (`CopilotSidebar`, `CopilotPopup`)
 - `@copilotkit/runtime` -- server runtime (`CopilotRuntime`, `ExperimentalEmptyAdapter`)
 
 AG-UI client classes (choose one per integration):

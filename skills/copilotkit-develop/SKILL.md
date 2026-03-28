@@ -179,15 +179,3 @@ useRenderTool({
 | `createCopilotEndpointExpress` | Create an Express router with all CopilotKit routes |
 | `CopilotKitIntelligence` | Intelligence platform client configuration |
 
-## Important: v1 to v2 Migration
-
-Do NOT use these deprecated v1 names:
-
-| v1 (deprecated) | v2 (current) |
-|-----------------|--------------|
-| `useCopilotAction` | `useFrontendTool` |
-| `useCopilotReadable` | `useAgentContext` |
-| `CoAgents` / `useCoAgent` | `useAgent` |
-| `CopilotTextarea` | Removed (no v2 equivalent) |
-| `@copilotkit/runtime` | `@copilotkit/runtime` |
-| `@copilotkit/react-core` / `@copilotkit/react-ui` | `@copilotkit/react` |
