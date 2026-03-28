@@ -9,6 +9,7 @@ This plugin provides AI agent skills for working with CopilotKit.
 - `copilotkit-integrations` — Integration guides for agent frameworks
 - `copilotkit-debug` — Diagnose and fix CopilotKit issues
 - `copilotkit-upgrade` — Migrate between CopilotKit versions
+- `copilotkit-agui` — AG-UI protocol: event types, building custom backends, streaming
 - `copilotkit-contribute` — Contribute to CopilotKit OSS
 
 ## Key Context

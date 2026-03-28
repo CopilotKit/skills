@@ -175,6 +175,18 @@ Migrate between CopilotKit versions.
 
 [Full Documentation](skills/copilotkit-upgrade/SKILL.md)
 
+### copilotkit-agui
+
+AG-UI protocol reference for building custom agent backends and understanding agent-to-UI communication.
+
+- Complete event type reference (~30 event types with schemas and examples)
+- Building AG-UI compliant backends from scratch
+- Event flow diagrams for common scenarios (chat, tool calls, state sync, human-in-the-loop)
+- @ag-ui/client SDK API reference (AbstractAgent, HttpAgent, middleware)
+- Transport encoding (SSE and protobuf)
+
+[Full Documentation](skills/copilotkit-agui/SKILL.md)
+
 ### copilotkit-contribute
 
 Contribute to CopilotKit open source.
@@ -315,6 +327,7 @@ CopilotKit/skills/
 │   ├── copilotkit-develop/       # Feature development with v2 APIs
 │   ├── copilotkit-integrations/  # Agent framework integration guides
 │   ├── copilotkit-debug/         # Error catalog and diagnostics
+│   ├── copilotkit-agui/           # AG-UI protocol reference
 │   ├── copilotkit-upgrade/       # Version migration and deprecation mapping
 │   └── copilotkit-contribute/    # OSS contribution guide
 ├── scripts/

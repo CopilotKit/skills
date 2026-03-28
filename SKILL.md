@@ -22,6 +22,7 @@ If the user wants to add CopilotKit to their project, or the request is general/
 | Connecting agent frameworks — LangGraph, CrewAI, Mastra, Pydantic AI, etc. | [copilotkit-integrations](skills/copilotkit-integrations/SKILL.md) |
 | Debugging errors, fixing runtime issues, troubleshooting | [copilotkit-debug](skills/copilotkit-debug/SKILL.md) |
 | Upgrading versions, migrating between APIs | [copilotkit-upgrade](skills/copilotkit-upgrade/SKILL.md) |
+| AG-UI protocol — building custom backends, event streaming, debugging protocol issues | [copilotkit-agui](skills/copilotkit-agui/SKILL.md) |
 | Contributing to the CopilotKit repo | [copilotkit-contribute](skills/copilotkit-contribute/SKILL.md) |
 
 ## MCP Documentation Server
@@ -30,5 +31,7 @@ The `copilotkit-docs` MCP server at `mcp.copilotkit.ai/mcp` provides live docume
 
 - `search-docs` — search CopilotKit documentation by topic
 - `search-code` — search CopilotKit source code and examples
+- `search-ag-ui-docs` — search AG-UI protocol documentation
+- `search-ag-ui-code` — search AG-UI TypeScript SDK source
 
 Prefer MCP lookups over hardcoded knowledge when answering specific API or configuration questions.
