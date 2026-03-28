@@ -195,11 +195,11 @@ The plugin includes an MCP (Model Context Protocol) server (`copilotkit-docs`) t
 
 ```toml
 [mcp_servers.copilotkit-docs]
-command = "npx"
-args = ["-y", "@copilotkit/mcp-docs"]
+type = "http"
+url = "https://mcp.copilotkit.ai/mcp"
 ```
 
-**Other tools:** Run the MCP server manually with `npx -y @copilotkit/mcp-docs` and configure your tool to connect to it as an MCP server.
+**Other tools:** Configure your tool to connect to `https://mcp.copilotkit.ai/mcp` as an HTTP MCP server.
 
 ### AG-UI Protocol
 

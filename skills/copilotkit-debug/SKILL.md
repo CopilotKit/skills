@@ -82,8 +82,8 @@ During debugging, use the `copilotkit-docs` MCP server to look up the latest Cop
 
 ```toml
 [mcp_servers.copilotkit-docs]
-command = "npx"
-args = ["-y", "@copilotkit/mcp-docs"]
+type = "http"
+url = "https://mcp.copilotkit.ai/mcp"
 ```
 
 ### Tool Usage
