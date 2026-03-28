@@ -383,6 +383,15 @@ CopilotKit/skills/
 - **SKILL.md changes**: Edit directly. These are human-maintained.
 - **Reference updates**: Run the bootstrap pipeline or edit `references/` files. These will be overwritten on the next pipeline run unless the pipeline is updated to preserve your changes.
 
+### Versioning
+
+Claude Code checks `marketplace.json` for plugin updates. When releasing changes:
+
+1. Bump the version in `.claude-plugin/plugin.json`
+2. A GitHub Actions workflow automatically syncs the version to `marketplace.json`
+
+Only `plugin.json` needs to be bumped manually — the sync is automatic.
+
 ---
 
 ## Support
