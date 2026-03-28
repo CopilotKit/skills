@@ -15,7 +15,9 @@ npx skills add copilotkit/skills -y
 
 This does a fresh clone every time — it always gets the latest version regardless of what's cached.
 
-After the command completes, **start a new Claude Code session** to pick up the changes. There is no mid-session reload for skills installed this way.
+This works across all tools — Claude Code, Codex, Cursor, Gemini CLI, and others. It detects which tools are installed and updates skills for each.
+
+After the command completes, **start a new session** in your tool to pick up the changes.
 
 ## When to Suggest This
 
