@@ -127,12 +127,11 @@ Build AI-powered features using CopilotKit's v2 APIs.
 
 Per-framework integration guides for connecting agent backends to CopilotKit.
 
-Covers 12 agent frameworks and protocols:
+Covers 10 agent frameworks and protocols:
 
 | Framework | Type |
 |-----------|------|
-| LangGraph | Python agent graph |
-| LangChain | Python chain/agent |
+| LangGraph | Python/JS agent graph |
 | CrewAI | Multi-agent crew |
 | PydanticAI | Typed Python agent |
 | Mastra | TypeScript agent framework |
@@ -140,9 +139,8 @@ Covers 12 agent frameworks and protocols:
 | LlamaIndex | RAG/agent pipeline |
 | Agno | Lightweight agent |
 | Strands | AWS agent SDK |
-| MS Agent Framework | .NET agent |
-| MCP | Model Context Protocol tools |
-| A2A Protocol | Agent-to-Agent communication |
+| MS Agent Framework | Python/.NET agent |
+| A2A/MCP | Agent-to-Agent and Model Context Protocol |
 
 Each guide covers installation, runtime wiring, and a working example.
 
@@ -221,9 +219,7 @@ All skills target the v2 API exclusively. The key packages and their roles:
 | `@copilotkit/react` | React hooks and components (`useAgent`, `CopilotChat`, etc.) |
 | `@copilotkit/runtime` | Server-side runtime (`CopilotRuntime`, `AgentRunner`) |
 | `@copilotkit/shared` | Shared types and protocol definitions |
-| `@copilotkit/*` | v1 wrappers (deprecated, wraps v2 internally) |
-
-The v1 `@copilotkit/*` packages still work but are thin wrappers around v2. New projects should use `@copilotkit/*` directly. The `copilotkit-upgrade` skill handles migration from v1 to v2.
+All packages are installed under `@copilotkit/*`. The v2 API is exposed through the same namespace — no package name changes are needed. The `copilotkit-upgrade` skill covers API-level migration (hook renames, component changes, runtime config).
 
 ---
 
@@ -289,7 +285,9 @@ CopilotKit/skills/
 │   ├── copilotkit-upgrade/       # Version migration and deprecation mapping
 │   └── copilotkit-contribute/    # OSS contribution guide
 ├── scripts/
-│   └── install.sh                # Multi-tool installer
+│   ├── install.sh                # Multi-tool installer
+│   ├── mcp-query.sh              # MCP JSON-RPC helper for CI
+│   └── detect-new-integrations.sh # Integration guide gap detection
 ├── CLAUDE.md                     # Claude Code project instructions
 ├── AGENTS.md                     # Codex agent instructions
 ├── README.md                     # This file

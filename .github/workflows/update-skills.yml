@@ -327,7 +327,7 @@ jobs:
             --title "Update skills from CopilotKit source ($(date +%Y-%m-%d))" \
             --body "$pr_body" \
             --label "$labels" \
-            --base master
+            --base main
 
   # ──────────────────────────────────────────────
   # Smoke tests (runs on the PR branch)
