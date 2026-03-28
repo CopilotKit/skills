@@ -59,7 +59,7 @@ These skills encode that knowledge. Instead of relying on the agent's training d
 Works across Claude Code, Codex, Cursor, Gemini CLI, and all tools supporting the [agentskills.io](https://agentskills.io) standard:
 
 ```bash
-npx skills add copilotkit/skills -y
+npx skills add copilotkit/skills --full-depth -y
 ```
 
 Fresh clones from GitHub every time. To **update**, run the same command again â€” it always gets the latest.
@@ -72,7 +72,7 @@ Fresh clones from GitHub every time. To **update**, run the same command again â
 /reload-plugins
 ```
 
-Note: Claude Code's marketplace update mechanism has [known issues](https://github.com/anthropics/claude-code/issues/26744) with third-party plugins. If updates aren't being picked up, use `npx skills add copilotkit/skills -y` instead.
+Note: Claude Code's marketplace update mechanism has [known issues](https://github.com/anthropics/claude-code/issues/26744) with third-party plugins. If updates aren't being picked up, use `npx skills add copilotkit/skills --full-depth -y` instead.
 
 ### Alternative: Manual install script
 

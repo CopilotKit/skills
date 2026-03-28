@@ -10,7 +10,7 @@ argument_hint: ""
 Run this command to pull the latest CopilotKit skills from GitHub:
 
 ```bash
-npx skills add copilotkit/skills -y
+npx skills add copilotkit/skills --full-depth -y
 ```
 
 This does a fresh clone every time — it always gets the latest version regardless of what's cached.
