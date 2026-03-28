@@ -14,7 +14,7 @@ Generated: 2026-03-28
 - packages/v2/runtime/src/ (CopilotRuntime, endpoint factories, route definitions, SSE streaming, /info endpoint response shape)
 - packages/v2/runtime/src/endpoints/ (CORS configuration, Hono middleware, Express middleware)
 - packages/v2/runtime/src/intelligence-platform/ (CopilotKitIntelligence, IntelligenceAgentRunner, WebSocket URLs)
-- packages/v2/runtime/src/runners/ (InMemoryAgentRunner, AgentRunner abstract class)
+- packages/v2/runtime/src/runner/ (InMemoryAgentRunner, AgentRunner abstract class)
 - packages/v2/react/src/ (CopilotKitProvider props: runtimeUrl, credentials, headers)
 - GitHub issues: #3170, #3425
 
