@@ -71,6 +71,14 @@ Targets: Claude Code, Codex, OpenCode, and Cursor.
 /plugin install copilotkit@skills
 ```
 
+### Agent Skills Standard (npx)
+
+Works across all tools that support the [agentskills.io](https://agentskills.io) standard:
+
+```bash
+npx skills add copilotkit/skills
+```
+
 ### OpenAI Codex
 
 ```bash
@@ -265,6 +273,28 @@ Daily runs batch into a single open PR — no spam. Each run adds commits to the
 
 SKILL.md files are human-maintained. They are written once during bootstrap and updated manually when the skill's guidance needs to change. The separation between generated references and authored guidance keeps maintenance tractable while ensuring API details stay accurate.
 
+Each skill includes a `sources.md` listing which CopilotKit source files were read to generate its references, enabling staleness detection.
+
+---
+
+## Skill Evals
+
+Skills include [skillgrade](https://github.com/mgechev/skill-eval) eval configs (`eval.yaml`) that validate skills work correctly by testing them against real agent scenarios.
+
+```bash
+npm i -g skillgrade
+
+# Run smoke tests on the setup skill
+cd skills/copilotkit-setup
+ANTHROPIC_API_KEY=your-key skillgrade --smoke
+
+# Run on the develop skill
+cd skills/copilotkit-develop
+ANTHROPIC_API_KEY=your-key skillgrade --smoke
+```
+
+Evals spin up an agent in Docker, give it the skill plus a task, and grade the output with deterministic checks and LLM rubrics.
+
 ---
 
 ## Repository Structure
@@ -291,6 +321,7 @@ CopilotKit/skills/
 │   ├── install.sh                # Multi-tool installer
 │   ├── mcp-query.sh              # MCP JSON-RPC helper for CI
 │   └── detect-new-integrations.sh # Integration guide gap detection
+├── SKILL.md                      # Root router for npx skills add
 ├── CLAUDE.md                     # Claude Code project instructions
 ├── AGENTS.md                     # Codex agent instructions
 ├── README.md                     # This file
