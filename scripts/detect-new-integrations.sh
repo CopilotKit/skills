@@ -60,6 +60,11 @@ for example_dir in "$EXAMPLES_DIR"/*/; do
     fi
 done
 
+# Exit code convention: 0 = new integrations found (success/action needed),
+# 1 = no new integrations (nothing to do). This is intentional -- the CI
+# workflow treats "found new integrations" as the success case that triggers
+# Strategy 2 guide generation. Callers should use `|| true` to prevent
+# set -e from aborting when no new integrations exist.
 if [ ${#new_integrations[@]} -eq 0 ]; then
     echo "No new integrations detected." >&2
     exit 1
