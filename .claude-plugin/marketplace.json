@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    {
+      "name": "copilotkit",
+      "description": "AI agent skills for CopilotKit — setup, develop, integrate, debug, upgrade, and contribute",
+      "category": "ai-frameworks",
+      "tags": ["copilotkit", "ai", "agents", "react"]
+    }
+  ]
+}

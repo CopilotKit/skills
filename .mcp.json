@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "copilotkit-docs": {
+      "command": "npx",
+      "args": ["-y", "@copilotkit/mcp-docs"]
+    }
+  }
+}
