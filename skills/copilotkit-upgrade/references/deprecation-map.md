@@ -6,45 +6,45 @@ Complete mapping of every deprecated v1 API to its v2 replacement.
 
 | v1 Hook | v1 Package | v2 Replacement | v2 Package | Status |
 |---------|-----------|---------------|-----------|--------|
-| `useCopilotAction` | `@copilotkit/react-core` | `useFrontendTool` | `@copilotkitnext/react` | Renamed + new parameter format (Zod) |
-| `useCopilotReadable` | `@copilotkit/react-core` | `useAgentContext` | `@copilotkitnext/react` | Renamed, `parentId` removed |
-| `useCopilotChat` | `@copilotkit/react-core` | `useAgent` | `@copilotkitnext/react` | Replaced (different API) |
-| `useCoAgent` | `@copilotkit/react-core` | `useAgent` | `@copilotkitnext/react` | Renamed, different return type |
-| `useCoAgentStateRender` | `@copilotkit/react-core` | `useRenderToolCall` / `useRenderActivityMessage` | `@copilotkitnext/react` | Split into two hooks |
-| `useLangGraphInterrupt` | `@copilotkit/react-core` | `useInterrupt` | `@copilotkitnext/react` | Renamed + new API |
-| `useCopilotChatSuggestions` | `@copilotkit/react-core` | `useConfigureSuggestions` + `useSuggestions` | `@copilotkitnext/react` | Split into two hooks |
-| `useCopilotAdditionalInstructions` | `@copilotkit/react-core` | `useAgentContext` | `@copilotkitnext/react` | Use description/value context |
-| `useMakeCopilotDocumentReadable` | `@copilotkit/react-core` | `useAgentContext` | `@copilotkitnext/react` | Pass content directly |
-| `useCopilotRuntimeClient` | `@copilotkit/react-core` | `useCopilotKit` | `@copilotkitnext/react` | Access core via provider context |
-| `useCopilotContext` | `@copilotkit/react-core` | `useCopilotKit` | `@copilotkitnext/react` | Returns `{ copilotkit }` |
+| `useCopilotAction` | `@copilotkit/react-core` | `useFrontendTool` | `@copilotkit/react` | Renamed + new parameter format (Zod) |
+| `useCopilotReadable` | `@copilotkit/react-core` | `useAgentContext` | `@copilotkit/react` | Renamed, `parentId` removed |
+| `useCopilotChat` | `@copilotkit/react-core` | `useAgent` | `@copilotkit/react` | Replaced (different API) |
+| `useCoAgent` | `@copilotkit/react-core` | `useAgent` | `@copilotkit/react` | Renamed, different return type |
+| `useCoAgentStateRender` | `@copilotkit/react-core` | `useRenderToolCall` / `useRenderActivityMessage` | `@copilotkit/react` | Split into two hooks |
+| `useLangGraphInterrupt` | `@copilotkit/react-core` | `useInterrupt` | `@copilotkit/react` | Renamed + new API |
+| `useCopilotChatSuggestions` | `@copilotkit/react-core` | `useConfigureSuggestions` + `useSuggestions` | `@copilotkit/react` | Split into two hooks |
+| `useCopilotAdditionalInstructions` | `@copilotkit/react-core` | `useAgentContext` | `@copilotkit/react` | Use description/value context |
+| `useMakeCopilotDocumentReadable` | `@copilotkit/react-core` | `useAgentContext` | `@copilotkit/react` | Pass content directly |
+| `useCopilotRuntimeClient` | `@copilotkit/react-core` | `useCopilotKit` | `@copilotkit/react` | Access core via provider context |
+| `useCopilotContext` | `@copilotkit/react-core` | `useCopilotKit` | `@copilotkit/react` | Returns `{ copilotkit }` |
 | `useCopilotMessagesContext` | `@copilotkit/react-core` | -- | -- | Removed (use agent event stream) |
 | `useCoAgentStateRenders` | `@copilotkit/react-core` | -- | -- | Removed (context no longer needed) |
 | `useCopilotChatInternal` | `@copilotkit/react-core` | -- | -- | Internal, removed |
 | `useCopilotChatHeadless_c` | `@copilotkit/react-core` | -- | -- | Internal, removed |
 | `useCopilotAuthenticatedAction_c` | `@copilotkit/react-core` | -- | -- | Internal, removed |
-| `useFrontendTool` | `@copilotkit/react-core` | `useFrontendTool` | `@copilotkitnext/react` | Same name, import path changes |
-| `useHumanInTheLoop` | `@copilotkit/react-core` | `useHumanInTheLoop` | `@copilotkitnext/react` | Same name, import path changes |
-| `useRenderToolCall` | `@copilotkit/react-core` | `useRenderToolCall` | `@copilotkitnext/react` | Same name, import path changes |
-| `useDefaultTool` | `@copilotkit/react-core` | `useDefaultRenderTool` | `@copilotkitnext/react` | Renamed |
+| `useFrontendTool` | `@copilotkit/react-core` | `useFrontendTool` | `@copilotkit/react` | Same name, import path changes |
+| `useHumanInTheLoop` | `@copilotkit/react-core` | `useHumanInTheLoop` | `@copilotkit/react` | Same name, import path changes |
+| `useRenderToolCall` | `@copilotkit/react-core` | `useRenderToolCall` | `@copilotkit/react` | Same name, import path changes |
+| `useDefaultTool` | `@copilotkit/react-core` | `useDefaultRenderTool` | `@copilotkit/react` | Renamed |
 | `useLazyToolRenderer` | `@copilotkit/react-core` | -- | -- | Removed |
-| `useChatContext` (react-ui) | `@copilotkit/react-ui` | `useCopilotChatConfiguration` | `@copilotkitnext/react` | Renamed |
+| `useChatContext` (react-ui) | `@copilotkit/react-ui` | `useCopilotChatConfiguration` | `@copilotkit/react` | Renamed |
 
 ## Components
 
 | v1 Component | v1 Package | v2 Replacement | v2 Package | Status |
 |-------------|-----------|---------------|-----------|--------|
-| `CopilotKit` | `@copilotkit/react-core` | `CopilotKitProvider` | `@copilotkitnext/react` | Renamed |
-| `CopilotChat` | `@copilotkit/react-ui` | `CopilotChat` | `@copilotkitnext/react` | Same name, new package |
-| `CopilotPopup` | `@copilotkit/react-ui` | `CopilotPopup` | `@copilotkitnext/react` | Same name, new package |
-| `CopilotSidebar` | `@copilotkit/react-ui` | `CopilotSidebar` | `@copilotkitnext/react` | Same name, new package |
+| `CopilotKit` | `@copilotkit/react-core` | `CopilotKitProvider` | `@copilotkit/react` | Renamed |
+| `CopilotChat` | `@copilotkit/react-ui` | `CopilotChat` | `@copilotkit/react` | Same name, new package |
+| `CopilotPopup` | `@copilotkit/react-ui` | `CopilotPopup` | `@copilotkit/react` | Same name, new package |
+| `CopilotSidebar` | `@copilotkit/react-ui` | `CopilotSidebar` | `@copilotkit/react` | Same name, new package |
 | `CopilotTextarea` | `@copilotkit/react-textarea` | -- | -- | **Removed** |
-| `CopilotDevConsole` | `@copilotkit/react-ui` | `CopilotKitInspector` | `@copilotkitnext/react` | Renamed |
+| `CopilotDevConsole` | `@copilotkit/react-ui` | `CopilotKitInspector` | `@copilotkit/react` | Renamed |
 | `Markdown` | `@copilotkit/react-ui` | -- | -- | Removed (use A2UI renderer) |
-| `AssistantMessage` | `@copilotkit/react-ui` | `CopilotChatAssistantMessage` | `@copilotkitnext/react` | Renamed |
-| `UserMessage` | `@copilotkit/react-ui` | `CopilotChatUserMessage` | `@copilotkitnext/react` | Renamed |
+| `AssistantMessage` | `@copilotkit/react-ui` | `CopilotChatAssistantMessage` | `@copilotkit/react` | Renamed |
+| `UserMessage` | `@copilotkit/react-ui` | `CopilotChatUserMessage` | `@copilotkit/react` | Renamed |
 | `ImageRenderer` | `@copilotkit/react-ui` | -- | -- | Removed |
-| `RenderSuggestionsList` | `@copilotkit/react-ui` | `CopilotChatSuggestionView` | `@copilotkitnext/react` | Renamed |
-| `RenderSuggestion` | `@copilotkit/react-ui` | `CopilotChatSuggestionPill` | `@copilotkitnext/react` | Renamed |
+| `RenderSuggestionsList` | `@copilotkit/react-ui` | `CopilotChatSuggestionView` | `@copilotkit/react` | Renamed |
+| `RenderSuggestion` | `@copilotkit/react-ui` | `CopilotChatSuggestionPill` | `@copilotkit/react` | Renamed |
 | `CoAgentStateRendersProvider` | `@copilotkit/react-core` | -- | -- | Removed (no v2 equivalent) |
 | `ThreadsProvider` | `@copilotkit/react-core` | -- | -- | Removed (threads managed by runtime) |
 
@@ -52,15 +52,15 @@ Complete mapping of every deprecated v1 API to its v2 replacement.
 
 | v1 Class/Function | v1 Package | v2 Replacement | v2 Package | Status |
 |------------------|-----------|---------------|-----------|--------|
-| `CopilotRuntime` | `@copilotkit/runtime` | `CopilotRuntime` | `@copilotkitnext/runtime` | Same name, different constructor API |
-| `OpenAIAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "openai:..." })` | `@copilotkitnext/agent` | **Removed** |
-| `AnthropicAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "anthropic:..." })` | `@copilotkitnext/agent` | **Removed** |
-| `GoogleGenerativeAIAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "google:..." })` | `@copilotkitnext/agent` | **Removed** |
+| `CopilotRuntime` | `@copilotkit/runtime` | `CopilotRuntime` | `@copilotkit/runtime` | Same name, different constructor API |
+| `OpenAIAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "openai:..." })` | `@copilotkit/agent` | **Removed** |
+| `AnthropicAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "anthropic:..." })` | `@copilotkit/agent` | **Removed** |
+| `GoogleGenerativeAIAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "google:..." })` | `@copilotkit/agent` | **Removed** |
 | `LangChainAdapter` | `@copilotkit/runtime` | Custom `AbstractAgent` | -- | **Removed** |
-| `GroqAdapter` | `@copilotkit/runtime` | `BuiltInAgent` with Groq model | `@copilotkitnext/agent` | **Removed** |
+| `GroqAdapter` | `@copilotkit/runtime` | `BuiltInAgent` with Groq model | `@copilotkit/agent` | **Removed** |
 | `UnifyAdapter` | `@copilotkit/runtime` | Custom `AbstractAgent` | -- | **Removed** |
 | `OpenAIAssistantAdapter` | `@copilotkit/runtime` | Custom `AbstractAgent` | -- | **Removed** |
-| `BedrockAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "vertex:..." })` | `@copilotkitnext/agent` | **Removed** |
+| `BedrockAdapter` | `@copilotkit/runtime` | `BuiltInAgent({ model: "vertex:..." })` | `@copilotkit/agent` | **Removed** |
 | `OllamaAdapter` (experimental) | `@copilotkit/runtime` | Custom `AbstractAgent` | -- | **Removed** |
 | `EmptyAdapter` | `@copilotkit/runtime` | -- | -- | **Removed** |
 | `RemoteChain` | `@copilotkit/runtime` | -- | -- | **Removed** |
@@ -71,24 +71,24 @@ Complete mapping of every deprecated v1 API to its v2 replacement.
 
 | v1 Function | v1 Package | v2 Replacement | v2 Package | Status |
 |------------|-----------|---------------|-----------|--------|
-| `copilotRuntimeNextJSAppRouterEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkitnext/runtime` | **Removed** (use Hono) |
-| `copilotRuntimeNextJSPagesRouterEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkitnext/runtime` | **Removed** (use Hono) |
-| `CopilotRuntimeNodeExpressEndpoint` | `@copilotkit/runtime` | `createCopilotEndpointExpress` | `@copilotkitnext/runtime` | Renamed |
-| `CopilotRuntimeNestEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkitnext/runtime` | **Removed** (use Hono) |
-| `CopilotRuntimeNodeHttpEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkitnext/runtime` | **Removed** (use Hono) |
+| `copilotRuntimeNextJSAppRouterEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkit/runtime` | **Removed** (use Hono) |
+| `copilotRuntimeNextJSPagesRouterEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkit/runtime` | **Removed** (use Hono) |
+| `CopilotRuntimeNodeExpressEndpoint` | `@copilotkit/runtime` | `createCopilotEndpointExpress` | `@copilotkit/runtime` | Renamed |
+| `CopilotRuntimeNestEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkit/runtime` | **Removed** (use Hono) |
+| `CopilotRuntimeNodeHttpEndpoint` | `@copilotkit/runtime` | `createCopilotEndpoint` | `@copilotkit/runtime` | **Removed** (use Hono) |
 
 ## Types
 
 | v1 Type | v1 Package | v2 Replacement | v2 Package | Status |
 |---------|-----------|---------------|-----------|--------|
-| `CopilotKitProps` | `@copilotkit/react-core` | `CopilotKitProviderProps` | `@copilotkitnext/react` | Renamed |
-| `CopilotContextParams` | `@copilotkit/react-core` | `CopilotKitContextValue` | `@copilotkitnext/react` | Renamed |
-| `FrontendAction` | `@copilotkit/react-core` | `ReactFrontendTool` | `@copilotkitnext/react` | Renamed + restructured |
-| `ActionRenderProps` | `@copilotkit/react-core` | `ReactToolCallRenderer` | `@copilotkitnext/react` | Renamed + restructured |
+| `CopilotKitProps` | `@copilotkit/react-core` | `CopilotKitProviderProps` | `@copilotkit/react` | Renamed |
+| `CopilotContextParams` | `@copilotkit/react-core` | `CopilotKitContextValue` | `@copilotkit/react` | Renamed |
+| `FrontendAction` | `@copilotkit/react-core` | `ReactFrontendTool` | `@copilotkit/react` | Renamed + restructured |
+| `ActionRenderProps` | `@copilotkit/react-core` | `ReactToolCallRenderer` | `@copilotkit/react` | Renamed + restructured |
 | `DocumentPointer` | `@copilotkit/react-core` | -- | -- | **Removed** |
 | `SystemMessageFunction` | `@copilotkit/react-core` | -- | -- | **Removed** |
-| `CopilotChatSuggestionConfiguration` | `@copilotkit/react-core` | `Suggestion` | `@copilotkitnext/core` | Renamed |
-| `Parameter` | `@copilotkit/shared` | Zod schemas / `StandardSchemaV1` | `zod` / `@copilotkitnext/shared` | Replaced with schema-based |
+| `CopilotChatSuggestionConfiguration` | `@copilotkit/react-core` | `Suggestion` | `@copilotkit/core` | Renamed |
+| `Parameter` | `@copilotkit/shared` | Zod schemas / `StandardSchemaV1` | `zod` / `@copilotkit/shared` | Replaced with schema-based |
 | `CopilotServiceAdapter` | `@copilotkit/runtime` | `AbstractAgent` | `@ag-ui/client` | Replaced |
 | `TextMessageEvents` | `@copilotkit/runtime` | -- | -- | **Removed** (@deprecated) |
 | `ToolCallEvents` | `@copilotkit/runtime` | -- | -- | **Removed** (@deprecated) |

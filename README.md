@@ -2,7 +2,7 @@
 
 [![Agent Skills Standard](https://img.shields.io/badge/Agent%20Skills-agentskills.io-blue)](https://agentskills.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![CopilotKit v2](https://img.shields.io/badge/CopilotKit-v2%20%40copilotkitnext-purple)](https://docs.copilotkit.ai)
+[![CopilotKit v2](https://img.shields.io/badge/CopilotKit-v2-purple)](https://docs.copilotkit.ai)
 
 Skills, hooks, MCP configuration, and reference docs that teach AI coding agents how to build with CopilotKit. Covers project setup, feature development, integration wiring, debugging, version migration, and open-source contribution -- all targeting the v2 API surface (`@copilotkit/*`).
 

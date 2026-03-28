@@ -10,19 +10,19 @@ v1 split React functionality across three packages:
 - `@copilotkit/react-textarea` -- CopilotTextarea component
 
 v2 consolidates everything into a single package:
-- `@copilotkitnext/react` -- provider, hooks, types, chat components, AG-UI re-exports
+- `@copilotkit/react` -- provider, hooks, types, chat components, AG-UI re-exports
 
 ### New package scope
 
-All v2 packages use the `@copilotkitnext` scope instead of `@copilotkit`. The `@copilotkit/*` packages still exist as v1 compatibility wrappers that delegate to v2 internally.
+The v2 API is exposed through the same `@copilotkit/*` packages. No package name changes are required when upgrading.
 
 ### Removed packages
 
 | Package | Status |
 |---------|--------|
 | `@copilotkit/react-textarea` | Removed. No v2 equivalent. |
-| `@copilotkit/runtime-client-gql` | Replaced by `@ag-ui/client` (re-exported from `@copilotkitnext/react`) |
-| `@copilotkit/sdk-js` | Replaced by `@copilotkitnext/agent` |
+| `@copilotkit/runtime-client-gql` | Replaced by `@ag-ui/client` (re-exported from `@copilotkit/react`) |
+| `@copilotkit/sdk-js` | Replaced by `@copilotkit/agent` |
 
 ---
 
@@ -251,7 +251,7 @@ export const POST = copilotRuntimeNextJSAppRouterEndpoint({
 });
 
 // v2
-import { createCopilotEndpoint } from "@copilotkitnext/runtime";
+import { createCopilotEndpoint } from "@copilotkit/runtime";
 
 const app = createCopilotEndpoint({
   runtime,

@@ -12,30 +12,30 @@ npm uninstall @copilotkit/react-core @copilotkit/react-ui @copilotkit/react-text
   @copilotkit/runtime @copilotkit/runtime-client-gql @copilotkit/shared @copilotkit/sdk-js
 
 # Install v2
-npm install @copilotkitnext/react @copilotkitnext/runtime @copilotkitnext/agent @copilotkitnext/shared
+npm install @copilotkit/react @copilotkit/runtime @copilotkit/agent @copilotkit/shared
 ```
 
 **Package mapping:**
 
 | v1 Package | v2 Package | Notes |
 |-----------|-----------|-------|
-| `@copilotkit/react-core` | `@copilotkitnext/react` | Hooks, provider, types merged into one package |
-| `@copilotkit/react-ui` | `@copilotkitnext/react` | Chat components merged into same package |
+| `@copilotkit/react-core` | `@copilotkit/react` | Hooks, provider, types merged into one package |
+| `@copilotkit/react-ui` | `@copilotkit/react` | Chat components merged into same package |
 | `@copilotkit/react-textarea` | -- | Removed entirely, no v2 equivalent |
-| `@copilotkit/runtime` | `@copilotkitnext/runtime` | New agent-based architecture |
-| `@copilotkit/runtime-client-gql` | `@ag-ui/client` | Re-exported by `@copilotkitnext/react` |
-| `@copilotkit/shared` | `@copilotkitnext/shared` | Utility types and constants |
-| `@copilotkit/sdk-js` | `@copilotkitnext/agent` | Agent definitions (BuiltInAgent, etc.) |
+| `@copilotkit/runtime` | `@copilotkit/runtime` | New agent-based architecture |
+| `@copilotkit/runtime-client-gql` | `@ag-ui/client` | Re-exported by `@copilotkit/react` |
+| `@copilotkit/shared` | `@copilotkit/shared` | Utility types and constants |
+| `@copilotkit/sdk-js` | `@copilotkit/agent` | Agent definitions (BuiltInAgent, etc.) |
 
 ### Step 2: Update All Imports
 
 Find-and-replace import paths across your codebase:
 
 ```
-@copilotkit/react-core  ->  @copilotkitnext/react
-@copilotkit/react-ui    ->  @copilotkitnext/react
-@copilotkit/runtime     ->  @copilotkitnext/runtime
-@copilotkit/shared      ->  @copilotkitnext/shared
+@copilotkit/react-core  ->  @copilotkit/react
+@copilotkit/react-ui    ->  @copilotkit/react
+@copilotkit/runtime     ->  @copilotkit/runtime
+@copilotkit/shared      ->  @copilotkit/shared
 ```
 
 ---
@@ -59,7 +59,7 @@ function App() {
 ### v2: `CopilotKitProvider`
 
 ```tsx
-import { CopilotKitProvider } from "@copilotkitnext/react";
+import { CopilotKitProvider } from "@copilotkit/react";
 
 function App() {
   return (
@@ -104,7 +104,7 @@ useCopilotAction({
 
 **v2:**
 ```tsx
-import { useFrontendTool } from "@copilotkitnext/react";
+import { useFrontendTool } from "@copilotkit/react";
 import { z } from "zod";
 
 useFrontendTool({
@@ -149,7 +149,7 @@ function EmployeeList({ employees }) {
 
 **v2:**
 ```tsx
-import { useAgentContext } from "@copilotkitnext/react";
+import { useAgentContext } from "@copilotkit/react";
 
 function EmployeeList({ employees }) {
   useAgentContext({
@@ -177,7 +177,7 @@ useMakeCopilotDocumentReadable(documentPointer, ["category1"]);
 
 **v2:**
 ```tsx
-import { useAgentContext } from "@copilotkitnext/react";
+import { useAgentContext } from "@copilotkit/react";
 
 useAgentContext({
   description: "Document content for category1",
@@ -205,7 +205,7 @@ const { name, state, setState, running, start, stop, run } = useCoAgent<AgentSta
 
 **v2:**
 ```tsx
-import { useAgent } from "@copilotkitnext/react";
+import { useAgent } from "@copilotkit/react";
 
 const agent = useAgent({ agentId: "my-agent" });
 
@@ -237,7 +237,7 @@ useCoAgentStateRender<YourAgentState>({
 
 **v2:**
 ```tsx
-import { useRenderToolCall } from "@copilotkitnext/react";
+import { useRenderToolCall } from "@copilotkit/react";
 
 // For tool call rendering:
 useRenderToolCall({
@@ -246,7 +246,7 @@ useRenderToolCall({
 });
 
 // Or for activity messages:
-import { useRenderActivityMessage } from "@copilotkitnext/react";
+import { useRenderActivityMessage } from "@copilotkit/react";
 
 useRenderActivityMessage({
   // renders activity/progress messages from the agent
@@ -280,7 +280,7 @@ useLangGraphInterrupt({
 
 **v2:**
 ```tsx
-import { useInterrupt } from "@copilotkitnext/react";
+import { useInterrupt } from "@copilotkit/react";
 
 const interruptElement = useInterrupt({
   renderInChat: false,  // false = you render it yourself; true = renders in CopilotChat
@@ -324,7 +324,7 @@ await appendMessage(new TextMessage({ role: MessageRole.User, content: "Hello" }
 
 **v2:**
 ```tsx
-import { useAgent } from "@copilotkitnext/react";
+import { useAgent } from "@copilotkit/react";
 
 const agent = useAgent({ agentId: "my-agent" });
 
@@ -351,7 +351,7 @@ useCopilotChatSuggestions({
 
 **v2:**
 ```tsx
-import { useConfigureSuggestions, useSuggestions } from "@copilotkitnext/react";
+import { useConfigureSuggestions, useSuggestions } from "@copilotkit/react";
 
 // Configure suggestion generation:
 useConfigureSuggestions({
@@ -382,7 +382,7 @@ useCopilotAdditionalInstructions({
 
 **v2:**
 ```tsx
-import { useAgentContext } from "@copilotkitnext/react";
+import { useAgentContext } from "@copilotkit/react";
 
 useAgentContext({
   description: "Additional instructions for the agent",
@@ -399,7 +399,7 @@ import { useHumanInTheLoop } from "@copilotkit/react-core";
 
 **v2:**
 ```tsx
-import { useHumanInTheLoop } from "@copilotkitnext/react";
+import { useHumanInTheLoop } from "@copilotkit/react";
 ```
 
 The API is similar -- registers a tool that pauses for user input via a render function with a `respond` callback.
@@ -436,8 +436,8 @@ export const POST = copilotKitEndpoint(runtime, serviceAdapter);
 ### v2: AG-UI Agent Pattern
 
 ```ts
-import { CopilotRuntime, createCopilotEndpoint } from "@copilotkitnext/runtime";
-import { BuiltInAgent } from "@copilotkitnext/agent";
+import { CopilotRuntime, createCopilotEndpoint } from "@copilotkit/runtime";
+import { BuiltInAgent } from "@copilotkit/agent";
 import { LangGraphAgent } from "@ag-ui/langgraph";
 
 const runtime = new CopilotRuntime({
@@ -483,7 +483,7 @@ const runtime = new CopilotRuntime({
 });
 
 // Intelligence Mode (durable threads, realtime, requires CopilotKitIntelligence)
-import { CopilotKitIntelligence } from "@copilotkitnext/runtime";
+import { CopilotKitIntelligence } from "@copilotkit/runtime";
 
 const runtime = new CopilotRuntime({
   agents: { default: myAgent },
@@ -497,7 +497,7 @@ const runtime = new CopilotRuntime({
 
 ## Chat Component Migration
 
-Chat components have the same names but move to `@copilotkitnext/react`:
+Chat components have the same names but move to `@copilotkit/react`:
 
 **v1:**
 ```tsx
@@ -506,7 +506,7 @@ import { CopilotChat, CopilotPopup, CopilotSidebar } from "@copilotkit/react-ui"
 
 **v2:**
 ```tsx
-import { CopilotChat, CopilotPopup, CopilotSidebar } from "@copilotkitnext/react";
+import { CopilotChat, CopilotPopup, CopilotSidebar } from "@copilotkit/react";
 ```
 
 v2 adds new chat sub-components for granular customization:
@@ -540,7 +540,7 @@ v1 used GraphQL-based message types from `@copilotkit/runtime-client-gql`:
 import { TextMessage, MessageRole } from "@copilotkit/runtime-client-gql";
 ```
 
-v2 uses AG-UI protocol types from `@ag-ui/client` (re-exported by `@copilotkitnext/react`):
+v2 uses AG-UI protocol types from `@ag-ui/client` (re-exported by `@copilotkit/react`):
 
 ```tsx
 import {
@@ -549,5 +549,5 @@ import {
   ToolCall,
   ToolMessage,
   EventType,
-} from "@copilotkitnext/react";  // re-exports from @ag-ui/client
+} from "@copilotkit/react";  // re-exports from @ag-ui/client
 ```

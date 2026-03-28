@@ -8,7 +8,7 @@ CopilotKit is a pnpm monorepo managed by Nx. Packages live under `packages/`, ex
 CopilotKit/
   packages/
     v1/          # Public API packages (@copilotkit/*)
-    v2/          # Implementation packages (@copilotkitnext/*)
+    v2/          # Implementation packages (@copilotkit/*)
   examples/
     v1/          # V1 example apps
     v2/          # V2 example apps (React, Angular, Node, etc.)
@@ -17,7 +17,7 @@ CopilotKit/
 
 ## V1-Wraps-V2 Architecture
 
-V2 (`@copilotkitnext/*`) is the real implementation. V1 (`@copilotkit/*`) is the public API that wraps V2 internally. New features always go in V2. If V1 compatibility is needed, create a thin re-export or wrapper in the corresponding V1 package.
+V2 (`@copilotkit/*`) is the real implementation. V1 (`@copilotkit/*`) is the public API that wraps V2 internally. New features always go in V2. If V1 compatibility is needed, create a thin re-export or wrapper in the corresponding V1 package.
 
 All layers communicate via the **AG-UI protocol** — an event-based standard streamed over SSE.
 
@@ -29,18 +29,18 @@ Frontend (React/Angular/Vanilla)  ->  Runtime (Express/Hono server)  ->  Agent (
 
 | Directory | Package Name | Description |
 |---|---|---|
-| `shared` | `@copilotkitnext/shared` | Common utilities, types, and constants used across all other packages |
-| `core` | `@copilotkitnext/core` | The `CopilotKitCore` orchestrator — manages agent registry, tool registry, context store, and event subscriptions. All framework packages wrap this. |
-| `react` | `@copilotkitnext/react` | React hooks (`useAgent`, `useFrontendTool`, `useAgentContext`, etc.) and `CopilotKitProvider`. Thin wrappers that register/unregister with Core. |
-| `angular` | `@copilotkitnext/angular` | Angular DI tokens, services, and signal-based state. Same concepts as React using Angular patterns. |
-| `runtime` | `@copilotkitnext/runtime` | Server-side `CopilotRuntime` class. Receives HTTP requests, delegates to agents. Provides Express and Hono adapters. Contains `AgentRunner` abstraction. |
-| `agent` | `@copilotkitnext/agent` | `BuiltInAgent` — a default agent implementation powered by the Vercel AI SDK. Used when developers don't bring their own agent framework. |
+| `shared` | `@copilotkit/shared` | Common utilities, types, and constants used across all other packages |
+| `core` | `@copilotkit/core` | The `CopilotKitCore` orchestrator — manages agent registry, tool registry, context store, and event subscriptions. All framework packages wrap this. |
+| `react` | `@copilotkit/react` | React hooks (`useAgent`, `useFrontendTool`, `useAgentContext`, etc.) and `CopilotKitProvider`. Thin wrappers that register/unregister with Core. |
+| `angular` | `@copilotkit/angular` | Angular DI tokens, services, and signal-based state. Same concepts as React using Angular patterns. |
+| `runtime` | `@copilotkit/runtime` | Server-side `CopilotRuntime` class. Receives HTTP requests, delegates to agents. Provides Express and Hono adapters. Contains `AgentRunner` abstraction. |
+| `agent` | `@copilotkit/agent` | `BuiltInAgent` — a default agent implementation powered by the Vercel AI SDK. Used when developers don't bring their own agent framework. |
 | `voice` | `@copilotkit/voice` | Voice input and transcription support. |
-| `web-inspector` | `@copilotkitnext/web-inspector` | Debug console (Lit web component) for inspecting agent communication in development. |
-| `sqlite-runner` | `@copilotkitnext/sqlite-runner` | `AgentRunner` implementation that persists thread state to SQLite instead of memory. |
-| `demo-agents` | `@copilotkitnext/demo-agents` | Demo agent implementations for examples and testing. |
-| `eslint-config` | `@copilotkitnext/eslint-config` | Shared ESLint configuration for v2 packages. |
-| `typescript-config` | `@copilotkitnext/typescript-config` | Shared TypeScript configuration for v2 packages. |
+| `web-inspector` | `@copilotkit/web-inspector` | Debug console (Lit web component) for inspecting agent communication in development. |
+| `sqlite-runner` | `@copilotkit/sqlite-runner` | `AgentRunner` implementation that persists thread state to SQLite instead of memory. |
+| `demo-agents` | `@copilotkit/demo-agents` | Demo agent implementations for examples and testing. |
+| `eslint-config` | `@copilotkit/eslint-config` | Shared ESLint configuration for v2 packages. |
+| `typescript-config` | `@copilotkit/typescript-config` | Shared TypeScript configuration for v2 packages. |
 
 ## V1 Packages (`packages/v1/`)
 

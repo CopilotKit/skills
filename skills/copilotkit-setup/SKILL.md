@@ -34,7 +34,7 @@ Before generating any code, detect the project's framework by checking files in 
 
 ### Step 1: Install packages
 
-All v2 packages use the `@copilotkitnext` namespace.
+All packages use the `@copilotkit` namespace.
 
 **Frontend (React) packages:**
 ```bash

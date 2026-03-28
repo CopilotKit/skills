@@ -71,7 +71,7 @@ pnpm dev:next
 pnpm dev:classic
 
 # Single package
-nx run @copilotkitnext/core:dev
+nx run @copilotkit/core:dev
 ```
 
 ## Commit Message Format

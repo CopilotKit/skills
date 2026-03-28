@@ -28,16 +28,16 @@ pnpm test:watch:next
 ### Single package
 
 ```bash
-# V2 packages use @copilotkitnext/ namespace
-nx run @copilotkitnext/core:test
-nx run @copilotkitnext/runtime:test
-nx run @copilotkitnext/react:test
-nx run @copilotkitnext/agent:test
-nx run @copilotkitnext/shared:test
-nx run @copilotkitnext/angular:test
-nx run @copilotkitnext/web-inspector:test
-nx run @copilotkitnext/demo-agents:test
-nx run @copilotkitnext/sqlite-runner:test
+# V2 packages use @copilotkit/ namespace
+nx run @copilotkit/core:test
+nx run @copilotkit/runtime:test
+nx run @copilotkit/react:test
+nx run @copilotkit/agent:test
+nx run @copilotkit/shared:test
+nx run @copilotkit/angular:test
+nx run @copilotkit/web-inspector:test
+nx run @copilotkit/demo-agents:test
+nx run @copilotkit/sqlite-runner:test
 
 # V1 packages use @copilotkit/ namespace
 nx run @copilotkit/react-core:test
@@ -186,7 +186,7 @@ const agent = new MockAgent({
 
 ## Tips
 
-- **Nx caches test results.** If source hasn't changed, `nx run @copilotkitnext/core:test` returns cached results instantly. Use `nx reset` to clear the cache if needed.
+- **Nx caches test results.** If source hasn't changed, `nx run @copilotkit/core:test` returns cached results instantly. Use `nx reset` to clear the cache if needed.
 - **Globals are enabled.** You don't need to import `describe`, `it`, `expect`, `vi`, etc. — they're globally available via `globals: true`.
 - **Silent mode is on.** Console output from tests is suppressed by default (`silent: true`). Remove it temporarily if you need to debug with `console.log`.
 - **Build before testing.** Tests depend on upstream packages being built (`dependsOn: ["^build"]` in nx.json). Run `pnpm build` if you get import errors in tests.

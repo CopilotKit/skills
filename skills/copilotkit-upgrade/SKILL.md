@@ -7,7 +7,7 @@ description: "Use when migrating a CopilotKit v1 application to v2 -- updating p
 
 ## Overview
 
-CopilotKit v2 is a ground-up rewrite built on the AG-UI protocol (`@ag-ui/client` / `@ag-ui/core`). The v1 packages (`@copilotkit/*`) still exist as thin wrappers that delegate to v2 (`@copilotkitnext/*`) under the hood, but new code should target v2 directly.
+CopilotKit v2 is a ground-up rewrite built on the AG-UI protocol (`@ag-ui/client` / `@ag-ui/core`). Users continue to install and import `@copilotkit/*` packages -- the v2 changes are exposed through the same package names with updated APIs (new hook names, component names, runtime configuration). The `@copilotkit/*` namespace is an internal implementation detail that users never interact with.
 
 ## Migration Workflow
 
@@ -49,16 +49,16 @@ Refer to `references/v1-to-v2-migration.md` for detailed before/after code examp
 
 ### 4. Update Package Dependencies
 
-Replace v1 packages with their v2 equivalents:
+The `@copilotkit/*` package names stay the same. Update to the latest v2 versions:
 
 ```
-@copilotkit/react-core       -> @copilotkitnext/react
-@copilotkit/react-ui          -> @copilotkitnext/react
-@copilotkit/react-textarea    -> removed (no v2 equivalent)
-@copilotkit/runtime           -> @copilotkitnext/runtime + @copilotkitnext/agent
-@copilotkit/runtime-client-gql -> @ag-ui/client (re-exported by @copilotkitnext/react)
-@copilotkit/shared            -> @copilotkitnext/shared
-@copilotkit/sdk-js            -> @copilotkitnext/agent
+@copilotkit/react-core        -> @copilotkit/react (consolidated into one package)
+@copilotkit/react-ui           -> @copilotkit/react (consolidated into one package)
+@copilotkit/react-textarea     -> removed (no v2 equivalent)
+@copilotkit/runtime            -> @copilotkit/runtime (same package, new agent-based API)
+@copilotkit/runtime-client-gql -> removed (replaced by AG-UI protocol, re-exported from @copilotkit/react)
+@copilotkit/shared             -> @copilotkit/shared (same package)
+@copilotkit/sdk-js             -> @copilotkit/agent (new package for agent definitions)
 ```
 
 ### 5. Update Runtime Configuration
@@ -74,8 +74,8 @@ const runtime = new CopilotRuntime({ actions: [...] });
 
 **v2 pattern** (agents + Hono endpoint):
 ```ts
-import { CopilotRuntime, createCopilotEndpoint } from "@copilotkitnext/runtime";
-import { BuiltInAgent } from "@copilotkitnext/agent";
+import { CopilotRuntime, createCopilotEndpoint } from "@copilotkit/runtime";
+import { BuiltInAgent } from "@copilotkit/agent";
 const runtime = new CopilotRuntime({
   agents: { myAgent: new BuiltInAgent({ model: "openai:gpt-4o" }) },
 });
@@ -94,7 +94,7 @@ import { CopilotKit } from "@copilotkit/react-core";
 
 **v2:**
 ```tsx
-import { CopilotKitProvider } from "@copilotkitnext/react";
+import { CopilotKitProvider } from "@copilotkit/react";
 <CopilotKitProvider runtimeUrl="/api/copilotkit">
   {children}
 </CopilotKitProvider>
@@ -111,7 +111,7 @@ import { CopilotKitProvider } from "@copilotkitnext/react";
 
 | Concept | v1 | v2 |
 |---------|----|----|
-| Package scope | `@copilotkit/*` | `@copilotkitnext/*` |
+| Package scope | `@copilotkit/*` | `@copilotkit/*` (same scope, updated APIs) |
 | Protocol | GraphQL | AG-UI (SSE) |
 | Provider component | `CopilotKit` | `CopilotKitProvider` |
 | Define frontend tool | `useCopilotAction` | `useFrontendTool` |
@@ -123,4 +123,4 @@ import { CopilotKitProvider } from "@copilotkitnext/react";
 | Runtime class | `CopilotRuntime` (adapters) | `CopilotRuntime` (agents) |
 | Endpoint setup | `copilotKitEndpoint()` | `createCopilotEndpoint()` |
 | Agent definition | `LangGraphAgent` endpoint | `AbstractAgent` / `BuiltInAgent` |
-| Chat components | `CopilotChat`, `CopilotPopup`, `CopilotSidebar` | `CopilotChat`, `CopilotPopup`, `CopilotSidebar` (from `@copilotkitnext/react`) |
+| Chat components | `CopilotChat`, `CopilotPopup`, `CopilotSidebar` | `CopilotChat`, `CopilotPopup`, `CopilotSidebar` (from `@copilotkit/react`) |
