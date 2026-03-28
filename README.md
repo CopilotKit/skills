@@ -54,35 +54,30 @@ These skills encode that knowledge. Instead of relying on the agent's training d
 
 ## Installation
 
-### Quick Install (All Tools)
+### Recommended: npx skills (all tools)
 
-Detects installed tools and copies skills to each:
+Works across Claude Code, Codex, Cursor, Gemini CLI, and all tools supporting the [agentskills.io](https://agentskills.io) standard:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/CopilotKit/skills/main/scripts/install.sh | bash
+npx skills add copilotkit/skills -y
 ```
 
-Targets: Claude Code, Codex, OpenCode, and Cursor.
+Fresh clones from GitHub every time. To **update**, run the same command again — it always gets the latest.
 
-### Claude Code
+### Alternative: Claude Code plugin marketplace
 
 ```bash
 /plugin marketplace add CopilotKit/skills
-/plugin install copilotkit@skills
+/plugin install copilotkit
+/reload-plugins
 ```
 
-### Agent Skills Standard (npx)
+Note: Claude Code's marketplace update mechanism has [known issues](https://github.com/anthropics/claude-code/issues/26744) with third-party plugins. If updates aren't being picked up, use `npx skills add copilotkit/skills -y` instead.
 
-Works across all tools that support the [agentskills.io](https://agentskills.io) standard:
-
-```bash
-npx skills add copilotkit/skills
-```
-
-### OpenAI Codex
+### Alternative: Manual install script
 
 ```bash
-npx codex-skills-registry@latest --skill=copilotkit/skills
+curl -fsSL https://raw.githubusercontent.com/CopilotKit/skills/main/scripts/install.sh | bash
 ```
 
 Or manually copy skills into `~/.codex/skills/`:
@@ -389,7 +384,8 @@ Claude Code plugin updates are version-string based. The cache is keyed by versi
 
 1. Bump the version in `.claude-plugin/plugin.json` with every meaningful push
 2. A GitHub Actions workflow automatically syncs the version to `marketplace.json`
-3. Users pick up new versions on their **next Claude Code session start** — there is no mid-session update
+3. Users on `npx skills add` just re-run the command to get the latest
+4. Users on Claude Code marketplace *should* get updates on session start, but this has [known issues](https://github.com/anthropics/claude-code/issues/26744) — recommend `npx skills add` for reliable updates
 
 ---
 
