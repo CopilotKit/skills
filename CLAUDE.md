@@ -11,6 +11,7 @@ This plugin provides AI agent skills for working with CopilotKit.
 - `copilotkit-upgrade` — Migrate between CopilotKit versions
 - `copilotkit-agui` — AG-UI protocol: event types, building custom backends, streaming
 - `copilotkit-contribute` — Contribute to CopilotKit OSS
+- `copilotkit-self-update` — Update these skills to latest version
 
 ## Key Context
 

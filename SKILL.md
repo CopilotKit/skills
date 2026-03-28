@@ -24,6 +24,7 @@ If the user wants to add CopilotKit to their project, or the request is general/
 | Upgrading versions, migrating between APIs | [copilotkit-upgrade](skills/copilotkit-upgrade/SKILL.md) |
 | AG-UI protocol — building custom backends, event streaming, debugging protocol issues | [copilotkit-agui](skills/copilotkit-agui/SKILL.md) |
 | Contributing to the CopilotKit repo | [copilotkit-contribute](skills/copilotkit-contribute/SKILL.md) |
+| Update/refresh these skills, skills seem stale or wrong | [copilotkit-self-update](skills/copilotkit-self-update/SKILL.md) |
 
 ## MCP Documentation Server
 
