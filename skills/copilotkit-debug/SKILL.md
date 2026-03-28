@@ -72,17 +72,31 @@ Use the reference documents to match symptoms to known issues:
 
 ## Using mcp-docs for Live Documentation Lookups
 
-During debugging, use the `mcp-docs` tool to look up the latest CopilotKit documentation:
+During debugging, use the `copilotkit-docs` MCP server to look up the latest CopilotKit documentation. This server provides two tools: `search-docs` (search documentation) and `search-code` (search source code examples).
+
+### MCP Setup
+
+**Claude Code:** The MCP server is auto-configured by the plugin's `.mcp.json` -- no manual setup needed. The agent can call the `search-docs` and `search-code` tools from the `copilotkit-docs` server directly.
+
+**Codex:** Add the following to your `.codex/config.toml`:
+
+```toml
+[mcp_servers.copilotkit-docs]
+command = "npx"
+args = ["-y", "@copilotkit/mcp-docs"]
+```
+
+### Tool Usage
+
+The `search-docs` and `search-code` tools are invoked as MCP tool calls (not CLI commands). Examples of what to search for during debugging:
 
 ```
-# Search for specific error or concept
-mcp-docs search "AGENT_NOT_FOUND"
-mcp-docs search "CopilotRuntime configuration"
-mcp-docs search "AG-UI protocol events"
-
-# Look up troubleshooting guides
-mcp-docs search "troubleshooting common issues"
-mcp-docs search "CORS configuration copilotkit"
+search-docs("AGENT_NOT_FOUND")
+search-docs("CopilotRuntime configuration")
+search-docs("AG-UI protocol events")
+search-docs("troubleshooting common issues")
+search-docs("CORS configuration copilotkit")
+search-code("CopilotRuntime error handling")
 ```
 
 The official troubleshooting docs are at:

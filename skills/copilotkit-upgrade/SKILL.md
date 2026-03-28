@@ -5,6 +5,13 @@ description: "Use when migrating a CopilotKit v1 application to v2 -- updating p
 
 # CopilotKit v1 to v2 Migration Skill
 
+## Live Documentation (MCP)
+
+This plugin includes an MCP server (`copilotkit-docs`) that provides `search-docs` and `search-code` tools for querying live CopilotKit documentation and source code. Useful for looking up current v2 API signatures during migration.
+
+- **Claude Code:** Auto-configured by the plugin's `.mcp.json` -- no setup needed.
+- **Codex:** Requires manual configuration. See the [copilotkit-debug skill](../copilotkit-debug/SKILL.md#mcp-setup) for setup instructions.
+
 ## Overview
 
 CopilotKit v2 is a ground-up rewrite built on the AG-UI protocol (`@ag-ui/client` / `@ag-ui/core`). Users continue to install and import `@copilotkit/*` packages -- the v2 changes are exposed through the same package names with updated APIs (new hook names, component names, runtime configuration). The `@copilotkit/*` namespace is an internal implementation detail that users never interact with.

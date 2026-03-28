@@ -10,6 +10,13 @@ description: >
 
 > **Important:** CopilotKit's internal v2 packages use the `@copilotkit/*` namespace. The public API that users install is `@copilotkit/*`. When contributing, you work with `@copilotkit/*` source but users never see that namespace.
 
+## Live Documentation (MCP)
+
+This plugin includes an MCP server (`copilotkit-docs`) that provides `search-docs` and `search-code` tools for querying live CopilotKit documentation and source code.
+
+- **Claude Code:** Auto-configured by the plugin's `.mcp.json` -- no setup needed.
+- **Codex:** Requires manual configuration. See the [copilotkit-debug skill](../copilotkit-debug/SKILL.md#mcp-setup) for setup instructions.
+
 ## Workflow
 
 1. **Fork and clone** the CopilotKit/CopilotKit repository.

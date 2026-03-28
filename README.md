@@ -187,9 +187,19 @@ Contribute to CopilotKit open source.
 
 ### MCP Integration
 
-The plugin includes an MCP (Model Context Protocol) configuration that connects to the `mcp-docs` server. This gives agents programmatic access to CopilotKit documentation -- they can query for specific API signatures, search for usage examples, and look up configuration options without relying on training data alone.
+The plugin includes an MCP (Model Context Protocol) server (`copilotkit-docs`) that gives agents programmatic access to CopilotKit documentation via `search-docs` and `search-code` tools. Agents can query for specific API signatures, search for usage examples, and look up configuration options without relying on training data alone.
 
-The MCP server is configured in `.mcp.json` at the repository root and is automatically available when the plugin is installed via Claude Code.
+**Claude Code:** The MCP server is configured in `.mcp.json` at the repository root and is automatically available when the plugin is installed. No manual setup needed.
+
+**Codex:** Add the following to your `.codex/config.toml`:
+
+```toml
+[mcp_servers.copilotkit-docs]
+command = "npx"
+args = ["-y", "@copilotkit/mcp-docs"]
+```
+
+**Other tools:** Run the MCP server manually with `npx -y @copilotkit/mcp-docs` and configure your tool to connect to it as an MCP server.
 
 ### AG-UI Protocol
 

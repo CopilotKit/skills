@@ -5,6 +5,13 @@ description: "Use when building AI-powered features with CopilotKit v2 -- adding
 
 # CopilotKit v2 Development Skill
 
+## Live Documentation (MCP)
+
+This plugin includes an MCP server (`copilotkit-docs`) that provides `search-docs` and `search-code` tools for querying live CopilotKit documentation and source code.
+
+- **Claude Code:** Auto-configured by the plugin's `.mcp.json` -- no setup needed.
+- **Codex:** Requires manual configuration. See the [copilotkit-debug skill](../copilotkit-debug/SKILL.md#mcp-setup) for setup instructions.
+
 ## Architecture Overview
 
 CopilotKit v2 is built on the AG-UI protocol (`@ag-ui/client` / `@ag-ui/core`). The stack has three layers:

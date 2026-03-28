@@ -10,6 +10,15 @@ description: >
 
 ## Prerequisites
 
+### Live Documentation (MCP)
+
+This plugin includes an MCP server (`copilotkit-docs`) that provides `search-docs` and `search-code` tools for querying live CopilotKit documentation and source code.
+
+- **Claude Code:** Auto-configured by the plugin's `.mcp.json` -- no setup needed.
+- **Codex:** Requires manual configuration. See the [copilotkit-debug skill](../copilotkit-debug/SKILL.md#mcp-setup) for setup instructions.
+
+### Environment
+
 Before starting setup, verify:
 
 1. **Node.js >= 18** (required for `fetch` globals used by the runtime)

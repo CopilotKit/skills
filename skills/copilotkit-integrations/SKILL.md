@@ -5,6 +5,15 @@ description: "Use when wiring an external agent framework (LangGraph, CrewAI, Py
 
 # CopilotKit Integrations
 
+## Live Documentation (MCP)
+
+This plugin includes an MCP server (`copilotkit-docs`) that provides `search-docs` and `search-code` tools for querying live CopilotKit documentation and source code. Useful for looking up framework-specific integration details.
+
+- **Claude Code:** Auto-configured by the plugin's `.mcp.json` -- no setup needed.
+- **Codex:** Requires manual configuration. See the [copilotkit-debug skill](../copilotkit-debug/SKILL.md#mcp-setup) for setup instructions.
+
+## Overview
+
 CopilotKit connects to external agent frameworks through the **AG-UI (Agent-UI) protocol** -- a streaming protocol that enables bidirectional communication between a frontend CopilotKit application and a backend agent. Every integration follows the same architectural pattern:
 
 1. **Agent server** -- your agent framework runs as an HTTP server (usually FastAPI/uvicorn for Python, or an Express/Next.js route for JS/TS)
