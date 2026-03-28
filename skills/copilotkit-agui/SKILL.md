@@ -59,7 +59,7 @@ data: {"type":"RUN_FINISHED","threadId":"t1","runId":"r1"}\n\n
 
 | Package | npm | Purpose |
 |---------|-----|---------|
-| `@ag-ui/core` | Events, types, schemas, factory functions | Protocol definition |
+| `@ag-ui/core` | Events, types, schemas | Protocol definition |
 | `@ag-ui/client` | AbstractAgent, HttpAgent, middleware, event application | Client SDK |
 | `@ag-ui/encoder` | EventEncoder (SSE + protobuf) | Server-side encoding |
 

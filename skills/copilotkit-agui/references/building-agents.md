@@ -78,7 +78,7 @@ class MyAgent extends AbstractAgent {
 }
 ```
 
-## Step 2: Using Event Factory Functions
+## Step 2: Constructing Events
 
 Emit events as plain objects with the `type` field set to the appropriate `EventType` enum value:
 
