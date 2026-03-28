@@ -80,29 +80,20 @@ class MyAgent extends AbstractAgent {
 
 ## Step 2: Using Event Factory Functions
 
-The `@ag-ui/core` package provides validated factory functions that parse through Zod schemas:
+Emit events as plain objects with the `type` field set to the appropriate `EventType` enum value:
 
 ```typescript
-import {
-  createRunStartedEvent,
-  createTextMessageStartEvent,
-  createTextMessageContentEvent,
-  createTextMessageEndEvent,
-  createToolCallStartEvent,
-  createToolCallArgsEvent,
-  createToolCallEndEvent,
-  createStateSnapshotEvent,
-  createStateDeltaEvent,
-  createRunFinishedEvent,
-  createRunErrorEvent,
-} from "@ag-ui/core";
+import { EventType } from "@ag-ui/core";
 
-// These throw if the event is invalid (e.g., empty delta)
-const event = createTextMessageContentEvent({
+// Events are plain objects — no factory functions needed
+const event = {
+  type: EventType.TEXT_MESSAGE_CONTENT,
   messageId: "msg-1",
-  delta: "Hello",  // Would throw if empty string
-});
+  delta: "Hello",
+};
 ```
+
+The event schemas are defined as Zod types in `@ag-ui/core` (e.g., `TextMessageContentEventSchema`) and can be used for validation if needed, but emitting plain objects is the standard pattern.
 
 ## Step 3: Expose as HTTP SSE Endpoint
 
