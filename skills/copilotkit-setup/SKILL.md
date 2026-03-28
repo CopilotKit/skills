@@ -38,12 +38,12 @@ All v2 packages use the `@copilotkitnext` namespace.
 
 **Frontend (React) packages:**
 ```bash
-npm install @copilotkitnext/react @copilotkitnext/core
+npm install @copilotkit/react @copilotkit/core
 ```
 
 **Runtime packages (backend):**
 ```bash
-npm install @copilotkitnext/runtime @copilotkitnext/agent
+npm install @copilotkit/runtime @copilotkit/agent
 ```
 
 If the runtime runs in the same Next.js app as the frontend, install all four packages together.
@@ -72,8 +72,8 @@ import {
   CopilotRuntime,
   createCopilotEndpoint,
   InMemoryAgentRunner,
-} from "@copilotkitnext/runtime";
-import { BuiltInAgent } from "@copilotkitnext/agent";
+} from "@copilotkit/runtime";
+import { BuiltInAgent } from "@copilotkit/agent";
 import { handle } from "hono/vercel";
 
 const agent = new BuiltInAgent({
@@ -111,8 +111,8 @@ import {
   CopilotRuntime,
   createCopilotEndpointSingleRoute,
   InMemoryAgentRunner,
-} from "@copilotkitnext/runtime";
-import { BuiltInAgent } from "@copilotkitnext/agent";
+} from "@copilotkit/runtime";
+import { BuiltInAgent } from "@copilotkit/agent";
 import { handle } from "hono/vercel";
 
 const agent = new BuiltInAgent({
@@ -143,9 +143,9 @@ Create `src/index.ts`:
 
 ```typescript
 import express from "express";
-import { CopilotRuntime } from "@copilotkitnext/runtime";
-import { createCopilotEndpointSingleRouteExpress } from "@copilotkitnext/runtime/express";
-import { BuiltInAgent, defineTool } from "@copilotkitnext/agent";
+import { CopilotRuntime } from "@copilotkit/runtime";
+import { createCopilotEndpointSingleRouteExpress } from "@copilotkit/runtime/express";
+import { BuiltInAgent, defineTool } from "@copilotkit/agent";
 import { z } from "zod";
 
 const agent = new BuiltInAgent({
@@ -174,13 +174,13 @@ app.listen(port, () => {
 });
 ```
 
-For multi-route Express, use `createCopilotEndpointExpress` instead (imported from `@copilotkitnext/runtime/express`).
+For multi-route Express, use `createCopilotEndpointExpress` instead (imported from `@copilotkit/runtime/express`).
 
 #### Standalone Hono Server (non-Vercel)
 
 ```typescript
-import { CopilotRuntime, createCopilotEndpoint } from "@copilotkitnext/runtime";
-import { BuiltInAgent } from "@copilotkitnext/agent";
+import { CopilotRuntime, createCopilotEndpoint } from "@copilotkit/runtime";
+import { BuiltInAgent } from "@copilotkit/agent";
 import { serve } from "@hono/node-server";
 
 const runtime = new CopilotRuntime({
@@ -204,11 +204,11 @@ npm install hono @hono/node-server
 
 ### Step 3: Set up the frontend provider
 
-Wrap your application with `CopilotKitProvider` from `@copilotkitnext/react`.
+Wrap your application with `CopilotKitProvider` from `@copilotkit/react`.
 
 **Important:** Import the stylesheet in your root layout:
 ```typescript
-import "@copilotkitnext/react/styles.css";
+import "@copilotkit/react/styles.css";
 ```
 
 #### Next.js App Router
@@ -218,7 +218,7 @@ In `src/app/page.tsx` (or a client component):
 ```tsx
 "use client";
 
-import { CopilotKitProvider, CopilotChat } from "@copilotkitnext/react";
+import { CopilotKitProvider, CopilotChat } from "@copilotkit/react";
 
 export default function Home() {
   return (
@@ -314,20 +314,20 @@ You can also pass `apiKey` directly to `BuiltInAgent` if needed.
 
 | Package | Purpose |
 |---|---|
-| `@copilotkitnext/react` | React components, hooks, provider |
-| `@copilotkitnext/core` | Core types, agent abstraction, state management |
-| `@copilotkitnext/runtime` | Server-side runtime, endpoint factories, agent runners |
-| `@copilotkitnext/agent` | `BuiltInAgent`, `defineTool`, model resolution |
-| `@copilotkitnext/shared` | Shared utilities, logger, types |
+| `@copilotkit/react` | React components, hooks, provider |
+| `@copilotkit/core` | Core types, agent abstraction, state management |
+| `@copilotkit/runtime` | Server-side runtime, endpoint factories, agent runners |
+| `@copilotkit/agent` | `BuiltInAgent`, `defineTool`, model resolution |
+| `@copilotkit/shared` | Shared utilities, logger, types |
 
 ### Endpoint factory functions
 
 | Function | Import | Protocol | Framework |
 |---|---|---|---|
-| `createCopilotEndpoint` | `@copilotkitnext/runtime` | Multi-route (Hono) | Next.js App Router, Hono standalone |
-| `createCopilotEndpointSingleRoute` | `@copilotkitnext/runtime` | Single-route (Hono) | Next.js App Router |
-| `createCopilotEndpointExpress` | `@copilotkitnext/runtime/express` | Multi-route (Express) | Express standalone |
-| `createCopilotEndpointSingleRouteExpress` | `@copilotkitnext/runtime/express` | Single-route (Express) | Express standalone |
+| `createCopilotEndpoint` | `@copilotkit/runtime` | Multi-route (Hono) | Next.js App Router, Hono standalone |
+| `createCopilotEndpointSingleRoute` | `@copilotkit/runtime` | Single-route (Hono) | Next.js App Router |
+| `createCopilotEndpointExpress` | `@copilotkit/runtime/express` | Multi-route (Express) | Express standalone |
+| `createCopilotEndpointSingleRouteExpress` | `@copilotkit/runtime/express` | Single-route (Express) | Express standalone |
 
 ### Runtime classes
 

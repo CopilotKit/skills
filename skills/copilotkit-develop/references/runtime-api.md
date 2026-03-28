@@ -1,6 +1,6 @@
 # CopilotKit v2 Runtime API Reference
 
-Package: `@copilotkitnext/runtime`
+Package: `@copilotkit/runtime`
 
 ---
 
@@ -11,7 +11,7 @@ Package: `@copilotkitnext/runtime`
 Compatibility shim that auto-detects the mode based on whether `intelligence` is provided. Delegates to `CopilotSseRuntime` or `CopilotIntelligenceRuntime`.
 
 ```ts
-import { CopilotRuntime } from "@copilotkitnext/runtime";
+import { CopilotRuntime } from "@copilotkit/runtime";
 
 const runtime = new CopilotRuntime({
   agents: { myAgent: new LangGraphAgent({ ... }) },
@@ -24,7 +24,7 @@ const runtime = new CopilotRuntime({
 Explicit SSE-mode runtime. Agents run in-memory via `InMemoryAgentRunner`.
 
 ```ts
-import { CopilotSseRuntime } from "@copilotkitnext/runtime";
+import { CopilotSseRuntime } from "@copilotkit/runtime";
 
 const runtime = new CopilotSseRuntime({
   agents: { myAgent: agent },
@@ -40,7 +40,7 @@ Intelligence-mode runtime with durable threads, realtime events, and persistent 
 import {
   CopilotIntelligenceRuntime,
   CopilotKitIntelligence,
-} from "@copilotkitnext/runtime";
+} from "@copilotkit/runtime";
 
 const runtime = new CopilotIntelligenceRuntime({
   agents: { myAgent: agent },
@@ -96,7 +96,7 @@ type McpAppsServerConfig = MCPClientConfig & {
 ### createCopilotEndpoint (Hono)
 
 ```ts
-import { createCopilotEndpoint } from "@copilotkitnext/runtime";
+import { createCopilotEndpoint } from "@copilotkit/runtime";
 
 const app = createCopilotEndpoint({
   runtime: CopilotRuntimeLike,
@@ -113,7 +113,7 @@ Returns a Hono app instance with all CopilotKit routes mounted under `basePath`.
 ### createCopilotEndpointExpress (Express)
 
 ```ts
-import { createCopilotEndpointExpress } from "@copilotkitnext/runtime";
+import { createCopilotEndpointExpress } from "@copilotkit/runtime";
 
 const router = createCopilotEndpointExpress({
   runtime: CopilotRuntimeLike,
@@ -202,7 +202,7 @@ const runtime = new CopilotRuntime({
 Client for the CopilotKit Intelligence platform (durable threads, realtime WebSocket).
 
 ```ts
-import { CopilotKitIntelligence } from "@copilotkitnext/runtime";
+import { CopilotKitIntelligence } from "@copilotkit/runtime";
 
 const intelligence = new CopilotKitIntelligence({
   // Configuration for the Intelligence platform
@@ -292,7 +292,7 @@ The Express endpoint factory uses `cors({ origin: "*" })` by default. Override b
 
 ```ts
 // app/api/copilotkit/[[...path]]/route.ts
-import { CopilotRuntime, createCopilotEndpoint } from "@copilotkitnext/runtime";
+import { CopilotRuntime, createCopilotEndpoint } from "@copilotkit/runtime";
 import { LangGraphAgent } from "@ag-ui/langgraph";
 
 const runtime = new CopilotRuntime({
@@ -322,7 +322,7 @@ import express from "express";
 import {
   CopilotRuntime,
   createCopilotEndpointExpress,
-} from "@copilotkitnext/runtime";
+} from "@copilotkit/runtime";
 import { LangGraphAgent } from "@ag-ui/langgraph";
 
 const app = express();

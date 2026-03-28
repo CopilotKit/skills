@@ -9,9 +9,9 @@ description: "Use when building AI-powered features with CopilotKit v2 -- adding
 
 CopilotKit v2 is built on the AG-UI protocol (`@ag-ui/client` / `@ag-ui/core`). The stack has three layers:
 
-1. **Runtime** (`@copilotkitnext/runtime`) -- Server-side. Hosts agents, handles SSE/Intelligence transport, middleware, transcription.
-2. **Core** (`@copilotkitnext/core`) -- Shared state management, tool registry, suggestion engine. Not imported directly by apps.
-3. **React** (`@copilotkitnext/react`) -- Provider, chat components, hooks. Re-exports everything from `@ag-ui/client` so apps need only one import.
+1. **Runtime** (`@copilotkit/runtime`) -- Server-side. Hosts agents, handles SSE/Intelligence transport, middleware, transcription.
+2. **Core** (`@copilotkit/core`) -- Shared state management, tool registry, suggestion engine. Not imported directly by apps.
+3. **React** (`@copilotkit/react`) -- Provider, chat components, hooks. Re-exports everything from `@ag-ui/client` so apps need only one import.
 
 ## Workflow
 
@@ -20,7 +20,7 @@ CopilotKit v2 is built on the AG-UI protocol (`@ag-ui/client` / `@ag-ui/core`). 
 Create a `CopilotRuntime` (or the explicit `CopilotSseRuntime` / `CopilotIntelligenceRuntime`) and expose it via `createCopilotEndpoint` (Hono) or `createCopilotEndpointExpress` (Express).
 
 ```ts
-import { CopilotRuntime, createCopilotEndpoint } from "@copilotkitnext/runtime";
+import { CopilotRuntime, createCopilotEndpoint } from "@copilotkit/runtime";
 import { LangGraphAgent } from "@ag-ui/langgraph";
 
 const runtime = new CopilotRuntime({
@@ -38,7 +38,7 @@ const app = createCopilotEndpoint({
 ### 2. Wrap Your App with the Provider (Client)
 
 ```tsx
-import { CopilotKitProvider } from "@copilotkitnext/react";
+import { CopilotKitProvider } from "@copilotkit/react";
 
 function App() {
   return (
@@ -54,7 +54,7 @@ function App() {
 Use `<CopilotChat>`, `<CopilotPopup>`, or `<CopilotSidebar>`:
 
 ```tsx
-import { CopilotChat } from "@copilotkitnext/react";
+import { CopilotChat } from "@copilotkit/react";
 
 function ChatPage() {
   return <CopilotChat agentId="myAgent" />;
@@ -66,7 +66,7 @@ function ChatPage() {
 Let the agent call functions in the browser:
 
 ```tsx
-import { useFrontendTool } from "@copilotkitnext/react";
+import { useFrontendTool } from "@copilotkit/react";
 import { z } from "zod";
 
 useFrontendTool({
@@ -85,7 +85,7 @@ useFrontendTool({
 Provide runtime data to the agent:
 
 ```tsx
-import { useAgentContext } from "@copilotkitnext/react";
+import { useAgentContext } from "@copilotkit/react";
 
 useAgentContext({
   description: "The user's current shopping cart",
@@ -98,7 +98,7 @@ useAgentContext({
 When an agent pauses for human input:
 
 ```tsx
-import { useInterrupt } from "@copilotkitnext/react";
+import { useInterrupt } from "@copilotkit/react";
 
 useInterrupt({
   render: ({ event, resolve }) => (
@@ -115,7 +115,7 @@ useInterrupt({
 Show custom UI when tools execute:
 
 ```tsx
-import { useRenderTool } from "@copilotkitnext/react";
+import { useRenderTool } from "@copilotkit/react";
 import { z } from "zod";
 
 useRenderTool({
@@ -182,5 +182,5 @@ Do NOT use these deprecated v1 names:
 | `useCopilotReadable` | `useAgentContext` |
 | `CoAgents` / `useCoAgent` | `useAgent` |
 | `CopilotTextarea` | Removed (no v2 equivalent) |
-| `@copilotkit/runtime` | `@copilotkitnext/runtime` |
-| `@copilotkit/react-core` / `@copilotkit/react-ui` | `@copilotkitnext/react` |
+| `@copilotkit/runtime` | `@copilotkit/runtime` |
+| `@copilotkit/react-core` / `@copilotkit/react-ui` | `@copilotkit/react` |

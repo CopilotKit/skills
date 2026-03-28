@@ -1,12 +1,12 @@
 # CopilotKit v2 Public API Reference
 
-Package imports: `@copilotkitnext/react`, `@copilotkitnext/runtime`, `@copilotkitnext/core`.
+Package imports: `@copilotkit/react`, `@copilotkit/runtime`, `@copilotkit/core`.
 
-Note: `@copilotkitnext/react` re-exports everything from `@ag-ui/client` (which itself re-exports `@ag-ui/core`), so applications typically only need `@copilotkitnext/react` and `@copilotkitnext/runtime`.
+Note: `@copilotkit/react` re-exports everything from `@ag-ui/client` (which itself re-exports `@ag-ui/core`), so applications typically only need `@copilotkit/react` and `@copilotkit/runtime`.
 
 ---
 
-## Hooks (`@copilotkitnext/react`)
+## Hooks (`@copilotkit/react`)
 
 ### useFrontendTool
 
@@ -310,7 +310,7 @@ Returns a function to render custom message decorators at `"before"` or `"after"
 
 ---
 
-## Components (`@copilotkitnext/react`)
+## Components (`@copilotkit/react`)
 
 ### CopilotKitProvider
 
@@ -418,7 +418,7 @@ Headless chat view with a slot-based architecture. Accepts slots for `messageVie
 
 ---
 
-## Types (`@copilotkitnext/react`)
+## Types (`@copilotkit/react`)
 
 ### ReactFrontendTool
 
@@ -484,6 +484,6 @@ type FrontendToolHandlerContext = {
 
 ---
 
-## Runtime (`@copilotkitnext/runtime`)
+## Runtime (`@copilotkit/runtime`)
 
 See [runtime-api.md](./runtime-api.md) for full runtime reference.

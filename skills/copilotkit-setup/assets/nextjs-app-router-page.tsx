@@ -2,14 +2,14 @@
 // Next.js App Router frontend with CopilotKit provider and chat UI
 //
 // Prerequisites:
-//   npm install @copilotkitnext/react @copilotkitnext/core
+//   npm install @copilotkit/react @copilotkit/core
 //
 // Also add to layout.tsx:
-//   import "@copilotkitnext/react/styles.css";
+//   import "@copilotkit/react/styles.css";
 
 "use client";
 
-import { CopilotKitProvider, CopilotChat } from "@copilotkitnext/react";
+import { CopilotKitProvider, CopilotChat } from "@copilotkit/react";
 
 export default function Home() {
   return (

@@ -4,7 +4,7 @@
 
 | Agent Type | Package | Description |
 |------------|---------|-------------|
-| `BuiltInAgent` | `@copilotkitnext/agent` | Uses Vercel AI SDK `streamText` with configurable model providers |
+| `BuiltInAgent` | `@copilotkit/agent` | Uses Vercel AI SDK `streamText` with configurable model providers |
 | `LangGraphAgent` | `@ag-ui/langgraph` | Wraps a LangGraph deployment (Python or JS) |
 | `A2AAgent` | Varies | Agent-to-Agent protocol agent |
 | Custom `AbstractAgent` | `@ag-ui/client` | Any class extending `AbstractAgent` with a `run()` returning `Observable<BaseEvent>` |
@@ -266,7 +266,7 @@ If WebSocket connections fail:
 
 ## Web Inspector
 
-The CopilotKit Web Inspector (`@copilotkitnext/web-inspector`) provides real-time visibility into:
+The CopilotKit Web Inspector (`@copilotkit/web-inspector`) provides real-time visibility into:
 
 - AG-UI events as they flow
 - Error events with error codes
@@ -275,7 +275,7 @@ The CopilotKit Web Inspector (`@copilotkitnext/web-inspector`) provides real-tim
 
 Enable it during development:
 ```tsx
-import { CopilotKitWebInspector } from "@copilotkitnext/web-inspector";
+import { CopilotKitWebInspector } from "@copilotkit/web-inspector";
 
 <CopilotKitProvider runtimeUrl="/api/copilotkit">
   <CopilotKitWebInspector />

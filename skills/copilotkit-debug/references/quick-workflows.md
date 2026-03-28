@@ -34,10 +34,10 @@ curl -v http://localhost:3001/api/copilotkit/info
 ### Step 4: Check package versions
 
 ```bash
-npm ls @copilotkitnext/runtime @copilotkitnext/react @copilotkitnext/core @ag-ui/client
+npm ls @copilotkit/runtime @copilotkit/react @copilotkit/core @ag-ui/client
 ```
 
-All `@copilotkitnext/*` packages should be the same version. Mismatches cause `VERSION_MISMATCH` errors.
+All `@copilotkit/*` packages should be the same version. Mismatches cause `VERSION_MISMATCH` errors.
 
 ### Step 5: Check CORS (if cross-origin)
 
@@ -273,7 +273,7 @@ If the issue is unresolved after following these workflows:
 2. **Enable the Web Inspector**: Add `<CopilotKitWebInspector />` to capture detailed event traces.
 
 3. **Collect a diagnostic bundle**:
-   - Package versions (`npm ls @copilotkitnext/*`)
+   - Package versions (`npm ls @copilotkit/*`)
    - Runtime `/info` response
    - SSE stream capture (copy from Network tab)
    - Server-side error logs

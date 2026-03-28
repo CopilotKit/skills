@@ -2,7 +2,7 @@
 
 ## Runtime Architecture
 
-CopilotKit v2 runtime (`@copilotkitnext/runtime`) runs as a Hono HTTP server. It exposes these endpoints under the configured `basePath`:
+CopilotKit v2 runtime (`@copilotkit/runtime`) runs as a Hono HTTP server. It exposes these endpoints under the configured `basePath`:
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|

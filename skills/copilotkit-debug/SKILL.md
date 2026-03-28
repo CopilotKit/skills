@@ -22,7 +22,7 @@ Invoke this skill when:
 
 Before proposing any fix, collect:
 
-1. **Package versions** -- Run `npm ls @copilotkitnext/runtime @copilotkitnext/react @copilotkitnext/core @ag-ui/client` (or the v1 equivalents). Version mismatches between runtime and react packages are a common root cause.
+1. **Package versions** -- Run `npm ls @copilotkit/runtime @copilotkit/react @copilotkit/core @ag-ui/client` (or the v1 equivalents). Version mismatches between runtime and react packages are a common root cause.
 2. **Runtime mode** -- Is this SSE mode (`CopilotSseRuntime`) or Intelligence mode (`CopilotIntelligenceRuntime`)? Check the runtime constructor.
 3. **Transport configuration** -- What is `runtimeUrl` set to in `CopilotKitProvider`? Does it match the `basePath` in `createCopilotEndpoint`?
 4. **Agent type** -- Is the agent a `BuiltInAgent`, `LangGraphAgent`, `A2AAgent`, or custom `AbstractAgent`?
@@ -34,7 +34,7 @@ Before proposing any fix, collect:
 CopilotKit has three error code systems:
 
 - **V1 `CopilotKitErrorCode`** -- Used by `@copilotkit/runtime` and `@copilotkit/react-core`. Codes like `NETWORK_ERROR`, `AGENT_NOT_FOUND`, `API_NOT_FOUND`.
-- **V2 `CopilotKitCoreErrorCode`** -- Used by `@copilotkitnext/core`. Codes like `runtime_info_fetch_failed`, `agent_connect_failed`, `agent_run_failed`.
+- **V2 `CopilotKitCoreErrorCode`** -- Used by `@copilotkit/core`. Codes like `runtime_info_fetch_failed`, `agent_connect_failed`, `agent_run_failed`.
 - **`TranscriptionErrorCode`** -- Used by both v1 and v2 for voice transcription. Codes like `service_not_configured`, `rate_limited`, `auth_failed`.
 
 Match the error code to the catalog in `references/error-patterns.md` for root cause and resolution.
@@ -52,7 +52,7 @@ For streaming/agent issues, trace the AG-UI event flow:
 7. **RunFinishedEvent** -- Successful completion
 8. **RunErrorEvent** -- Agent-level error
 
-Enable the CopilotKit Web Inspector (`@copilotkitnext/web-inspector`) to see events in real time. Or check the SSE stream directly in the browser Network tab -- each event is a `data:` line in the `text/event-stream` response.
+Enable the CopilotKit Web Inspector (`@copilotkit/web-inspector`) to see events in real time. Or check the SSE stream directly in the browser Network tab -- each event is a `data:` line in the `text/event-stream` response.
 
 ### Step 4: Identify Root Cause
 

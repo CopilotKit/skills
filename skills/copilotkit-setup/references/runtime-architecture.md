@@ -1,6 +1,6 @@
 # Runtime Architecture
 
-The CopilotKit v2 runtime (`@copilotkitnext/runtime`) is the server-side component that manages agent execution, thread state, and communication with the frontend via the AG-UI protocol (SSE-based events).
+The CopilotKit v2 runtime (`@copilotkit/runtime`) is the server-side component that manages agent execution, thread state, and communication with the frontend via the AG-UI protocol (SSE-based events).
 
 ## Core Concepts
 
@@ -9,7 +9,7 @@ The CopilotKit v2 runtime (`@copilotkitnext/runtime`) is the server-side compone
 `CopilotRuntime` is the main entry point. It is a compatibility shim that delegates to either `CopilotSseRuntime` (default) or `CopilotIntelligenceRuntime` depending on configuration.
 
 ```typescript
-import { CopilotRuntime } from "@copilotkitnext/runtime";
+import { CopilotRuntime } from "@copilotkit/runtime";
 
 // SSE mode (default) -- in-memory thread state
 const runtime = new CopilotRuntime({
@@ -42,10 +42,10 @@ const runtime = new CopilotRuntime({
 
 ### Agents
 
-Agents implement the `AbstractAgent` interface from `@ag-ui/client`. CopilotKit provides `BuiltInAgent` (from `@copilotkitnext/agent`) as a ready-to-use implementation backed by the Vercel AI SDK.
+Agents implement the `AbstractAgent` interface from `@ag-ui/client`. CopilotKit provides `BuiltInAgent` (from `@copilotkit/agent`) as a ready-to-use implementation backed by the Vercel AI SDK.
 
 ```typescript
-import { BuiltInAgent, defineTool } from "@copilotkitnext/agent";
+import { BuiltInAgent, defineTool } from "@copilotkit/agent";
 import { z } from "zod";
 
 const agent = new BuiltInAgent({
@@ -129,7 +129,7 @@ Each operation gets its own HTTP path under the base path:
 
 **Hono (`createCopilotEndpoint`):**
 ```typescript
-import { CopilotRuntime, createCopilotEndpoint } from "@copilotkitnext/runtime";
+import { CopilotRuntime, createCopilotEndpoint } from "@copilotkit/runtime";
 
 const app = createCopilotEndpoint({
   runtime,
@@ -143,7 +143,7 @@ const app = createCopilotEndpoint({
 
 **Express (`createCopilotEndpointExpress`):**
 ```typescript
-import { createCopilotEndpointExpress } from "@copilotkitnext/runtime/express";
+import { createCopilotEndpointExpress } from "@copilotkit/runtime/express";
 
 const router = createCopilotEndpointExpress({
   runtime,
@@ -158,7 +158,7 @@ All operations go through a single POST endpoint. The operation is identified by
 
 **Hono (`createCopilotEndpointSingleRoute`):**
 ```typescript
-import { CopilotRuntime, createCopilotEndpointSingleRoute } from "@copilotkitnext/runtime";
+import { CopilotRuntime, createCopilotEndpointSingleRoute } from "@copilotkit/runtime";
 
 const app = createCopilotEndpointSingleRoute({
   runtime,
@@ -168,7 +168,7 @@ const app = createCopilotEndpointSingleRoute({
 
 **Express (`createCopilotEndpointSingleRouteExpress`):**
 ```typescript
-import { createCopilotEndpointSingleRouteExpress } from "@copilotkitnext/runtime/express";
+import { createCopilotEndpointSingleRouteExpress } from "@copilotkit/runtime/express";
 
 const router = createCopilotEndpointSingleRouteExpress({
   runtime,

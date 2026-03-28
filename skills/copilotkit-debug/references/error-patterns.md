@@ -109,7 +109,7 @@ All defined in `packages/v1/shared/src/utils/errors.ts`:
 
 ## V2 Error Codes (`CopilotKitCoreErrorCode`)
 
-Used by `@copilotkitnext/core`. Defined in `packages/v2/core/src/core/core.ts`. These are emitted via the `onError` subscriber callback.
+Used by `@copilotkit/core`. Defined in `packages/v2/core/src/core/core.ts`. These are emitted via the `onError` subscriber callback.
 
 ### runtime_info_fetch_failed
 - **Cause**: The `/info` endpoint returned an error or was unreachable.
@@ -175,7 +175,7 @@ Used by `@copilotkitnext/core`. Defined in `packages/v2/core/src/core/core.ts`. 
 
 ## Transcription Error Codes (`TranscriptionErrorCode`)
 
-Used by `@copilotkitnext/shared` and `@copilotkitnext/react`. Defined in `packages/v2/shared/src/transcription-errors.ts`.
+Used by `@copilotkit/shared` and `@copilotkit/react`. Defined in `packages/v2/shared/src/transcription-errors.ts`.
 
 | Code | Retryable | Description |
 |------|-----------|-------------|
@@ -193,7 +193,7 @@ Used by `@copilotkitnext/shared` and `@copilotkitnext/react`. Defined in `packag
 
 ## Intelligence Platform Error (`PlatformRequestError`)
 
-Used by `@copilotkitnext/runtime` for Intelligence mode. Defined in `packages/v2/runtime/src/intelligence-platform/client.ts`.
+Used by `@copilotkit/runtime` for Intelligence mode. Defined in `packages/v2/runtime/src/intelligence-platform/client.ts`.
 
 | Status | Meaning |
 |--------|---------|

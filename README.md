@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![CopilotKit v2](https://img.shields.io/badge/CopilotKit-v2%20%40copilotkitnext-purple)](https://docs.copilotkit.ai)
 
-Skills, hooks, MCP configuration, and reference docs that teach AI coding agents how to build with CopilotKit. Covers project setup, feature development, integration wiring, debugging, version migration, and open-source contribution -- all targeting the v2 API surface (`@copilotkitnext/*`).
+Skills, hooks, MCP configuration, and reference docs that teach AI coding agents how to build with CopilotKit. Covers project setup, feature development, integration wiring, debugging, version migration, and open-source contribution -- all targeting the v2 API surface (`@copilotkit/*`).
 
 Built on the open [Agent Skills](https://agentskills.io) standard. One set of SKILL.md files works across Claude Code, Codex, Cursor, and OpenCode.
 
@@ -104,7 +104,7 @@ Copy each skill directory from `skills/` into your tool's skills directory:
 Add CopilotKit to a project from scratch.
 
 - Detects your framework: Next.js App Router, Next.js Pages Router, Remix, or Vite
-- Installs `@copilotkitnext/*` packages
+- Installs `@copilotkit/*` packages
 - Wires up the v2 `CopilotRuntime` with your LLM provider (OpenAI, Anthropic, Google, etc.)
 - Configures the `CopilotProvider` and verifies the integration works end-to-end
 
@@ -164,7 +164,7 @@ Migrate between CopilotKit versions.
 
 - Version-to-version migration guides
 - Breaking changes catalog with before/after code
-- Deprecation mapping: v1 (`@copilotkit/*`) to v2 (`@copilotkitnext/*`) equivalents
+- Deprecation mapping: v1 (`@copilotkit/*`) to v2 (`@copilotkit/*`) equivalents
 - Automated detection of deprecated API usage in your codebase
 
 [Full Documentation](skills/copilotkit-upgrade/SKILL.md)
@@ -208,12 +208,12 @@ All skills target the v2 API exclusively. The key packages and their roles:
 
 | Package | Role |
 |---------|------|
-| `@copilotkitnext/react` | React hooks and components (`useAgent`, `CopilotChat`, etc.) |
-| `@copilotkitnext/runtime` | Server-side runtime (`CopilotRuntime`, `AgentRunner`) |
-| `@copilotkitnext/shared` | Shared types and protocol definitions |
+| `@copilotkit/react` | React hooks and components (`useAgent`, `CopilotChat`, etc.) |
+| `@copilotkit/runtime` | Server-side runtime (`CopilotRuntime`, `AgentRunner`) |
+| `@copilotkit/shared` | Shared types and protocol definitions |
 | `@copilotkit/*` | v1 wrappers (deprecated, wraps v2 internally) |
 
-The v1 `@copilotkit/*` packages still work but are thin wrappers around v2. New projects should use `@copilotkitnext/*` directly. The `copilotkit-upgrade` skill handles migration from v1 to v2.
+The v1 `@copilotkit/*` packages still work but are thin wrappers around v2. New projects should use `@copilotkit/*` directly. The `copilotkit-upgrade` skill handles migration from v1 to v2.
 
 ---
 

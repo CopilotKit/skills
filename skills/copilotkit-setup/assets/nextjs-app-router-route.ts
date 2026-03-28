@@ -2,7 +2,7 @@
 // Next.js App Router + Hono multi-route endpoint
 //
 // Prerequisites:
-//   npm install @copilotkitnext/runtime @copilotkitnext/agent hono
+//   npm install @copilotkit/runtime @copilotkit/agent hono
 //
 // Environment variables:
 //   OPENAI_API_KEY=sk-...  (or ANTHROPIC_API_KEY / GOOGLE_API_KEY)
@@ -11,8 +11,8 @@ import {
   CopilotRuntime,
   createCopilotEndpoint,
   InMemoryAgentRunner,
-} from "@copilotkitnext/runtime";
-import { BuiltInAgent } from "@copilotkitnext/agent";
+} from "@copilotkit/runtime";
+import { BuiltInAgent } from "@copilotkit/agent";
 import { handle } from "hono/vercel";
 
 const agent = new BuiltInAgent({
