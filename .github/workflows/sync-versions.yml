@@ -1,0 +1,46 @@
+name: Sync marketplace.json version
+
+on:
+  push:
+    branches: [main]
+    paths: ['.claude-plugin/plugin.json']
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check if versions are in sync
+        id: check
+        run: |
+          plugin_version=$(jq -r '.version' .claude-plugin/plugin.json)
+          marketplace_meta=$(jq -r '.metadata.version' .claude-plugin/marketplace.json)
+          marketplace_plugin=$(jq -r '.plugins[0].version' .claude-plugin/marketplace.json)
+
+          echo "plugin.json: $plugin_version"
+          echo "marketplace.json metadata: $marketplace_meta"
+          echo "marketplace.json plugin: $marketplace_plugin"
+
+          if [ "$plugin_version" = "$marketplace_meta" ] && [ "$plugin_version" = "$marketplace_plugin" ]; then
+            echo "synced=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "synced=false" >> "$GITHUB_OUTPUT"
+            echo "version=$plugin_version" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update marketplace.json
+        if: steps.check.outputs.synced == 'false'
+        run: |
+          version="${{ steps.check.outputs.version }}"
+          jq --arg v "$version" '.metadata.version = $v | .plugins[0].version = $v' \
+            .claude-plugin/marketplace.json > tmp.json && mv tmp.json .claude-plugin/marketplace.json
+
+      - name: Commit and push
+        if: steps.check.outputs.synced == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .claude-plugin/marketplace.json
+          git commit -m "Sync marketplace.json version to ${{ steps.check.outputs.version }}"
+          git push
