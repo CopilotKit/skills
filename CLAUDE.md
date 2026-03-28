@@ -13,8 +13,7 @@ This plugin provides AI agent skills for working with CopilotKit.
 
 ## Key Context
 
-- Public packages are `@copilotkit/*` — this is what users install and import
-- Internal v2 implementation is under `@copilotkitnext/*` — contributors see this in source but users should never import it
+- All packages are under `@copilotkit/*`
 - Communication uses AG-UI protocol (SSE-based events)
 - Use mcp-docs MCP server for querying live CopilotKit documentation
 
