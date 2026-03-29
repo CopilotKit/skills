@@ -74,13 +74,9 @@ Fresh clones from GitHub every time. To **update**, run the same command again â
 
 Note: Claude Code's marketplace update mechanism has [known issues](https://github.com/anthropics/claude-code/issues/26744) with third-party plugins. If updates aren't being picked up, use `npx skills add copilotkit/skills --full-depth -y` instead.
 
-### Alternative: Manual install script
+### Alternative: Manual install
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/CopilotKit/skills/main/scripts/install.sh | bash
-```
-
-Or manually copy skills into `~/.codex/skills/`:
+Copy skills into `~/.codex/skills/`:
 
 ```bash
 git clone https://github.com/CopilotKit/skills.git /tmp/copilotkit-skills
