@@ -201,24 +201,27 @@ jobs:
           USERMSG
           )
 
-            # Escape for JSON
-            system_json=$(echo "$system_prompt" | jq -Rs .)
-            user_json=$(echo "$user_message" | jq -Rs .)
+            # Build JSON payload via jq to a temp file (avoids argument list too long)
+            payload_file=$(mktemp)
+            jq -n \
+              --arg model "claude-sonnet-4-20250514" \
+              --arg system "$system_prompt" \
+              --arg user "$user_message" \
+              '{
+                model: $model,
+                max_tokens: 8192,
+                system: $system,
+                messages: [{ role: "user", content: $user }]
+              }' > "$payload_file"
 
             response=$(curl -sf "https://api.anthropic.com/v1/messages" \
               -H "x-api-key: ${ANTHROPIC_API_KEY}" \
               -H "anthropic-version: 2023-06-01" \
               -H "content-type: application/json" \
               --max-time 120 \
-              -d "{
-                \"model\": \"claude-sonnet-4-20250514\",
-                \"max_tokens\": 8192,
-                \"system\": ${system_json},
-                \"messages\": [{
-                  \"role\": \"user\",
-                  \"content\": ${user_json}
-                }]
-              }")
+              -d @"$payload_file")
+
+            rm -f "$payload_file"
 
             if [ $? -ne 0 ] || [ -z "$response" ]; then
               echo "ERROR: Claude API call failed for ${integration}"

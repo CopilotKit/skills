@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Requires bash 4+ for associative arrays. On macOS, use /opt/homebrew/bin/bash.
 #
 # detect-new-integrations.sh
 #
@@ -35,6 +36,26 @@ if [ ! -d "$GUIDES_DIR" ]; then
     exit 1
 fi
 
+# Map example directory names to guide filenames.
+# Multiple example dirs can map to a single guide (e.g., langgraph-js,
+# langgraph-python, langgraph-fastapi all map to langgraph.md).
+declare -A dir_to_guide
+dir_to_guide=(
+    ["a2a-a2ui"]="a2a"
+    ["a2a-middleware"]="a2a"
+    ["mcp-apps"]="a2a"
+    ["crewai-crews"]="crewai"
+    ["crewai-flows"]="crewai"
+    ["langgraph-js"]="langgraph"
+    ["langgraph-python"]="langgraph"
+    ["langgraph-fastapi"]="langgraph"
+    ["ms-agent-framework-python"]="ms-agent-framework"
+    ["ms-agent-framework-dotnet"]="ms-agent-framework"
+    ["strands-python"]="strands"
+    ["agent-spec"]=""
+    ["agentcore"]=""
+)
+
 # Collect existing guide names (filename without .md extension)
 declare -A existing_guides
 for guide_file in "$GUIDES_DIR"/*.md; do
@@ -55,8 +76,19 @@ for example_dir in "$EXAMPLES_DIR"/*/; do
     [[ "$name" == .* ]] && continue
     [[ "$name" == "node_modules" ]] && continue
 
-    if [ -z "${existing_guides[$name]+x}" ]; then
-        new_integrations+=("$name")
+    # Resolve directory name to guide name via mapping
+    guide_name="${dir_to_guide[$name]:-$name}"
+
+    # Empty mapping means intentionally skipped (e.g., agent-spec)
+    [ -z "$guide_name" ] && continue
+
+    if [ -z "${existing_guides[$guide_name]+x}" ]; then
+        # Only add once per guide name
+        local_already=false
+        for existing in "${new_integrations[@]:-}"; do
+            [ "$existing" = "$guide_name" ] && local_already=true && break
+        done
+        $local_already || new_integrations+=("$guide_name")
     fi
 done
 
