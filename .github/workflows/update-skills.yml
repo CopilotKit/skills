@@ -118,16 +118,15 @@ jobs:
             example_dir="../copilotkit-repo/examples/integrations/${integration}"
             guide_path="skills/copilotkit-integrations/references/integrations/${integration}.md"
 
-            # Collect all source files from the example directory
-            example_files=""
+            # Collect source files from the example directory into a temp file
+            # (avoids shell variable size limits for large examples)
+            example_files_tmp=$(mktemp)
             while IFS= read -r -d '' file; do
               rel_path="${file#${example_dir}/}"
-              content=$(cat "$file")
-              example_files="${example_files}
-          --- FILE: ${rel_path} ---
-          ${content}
-          --- END FILE ---
-          "
+              echo "--- FILE: ${rel_path} ---" >> "$example_files_tmp"
+              head -c 50000 "$file" >> "$example_files_tmp"
+              echo "" >> "$example_files_tmp"
+              echo "--- END FILE ---" >> "$example_files_tmp"
             done < <(find "$example_dir" -type f \
               \( -name "*.ts" -o -name "*.tsx" -o -name "*.js" -o -name "*.jsx" \
                  -o -name "*.py" -o -name "*.toml" -o -name "*.yaml" -o -name "*.yml" \
@@ -136,7 +135,15 @@ jobs:
               -not -path "*/node_modules/*" \
               -not -path "*/.next/*" \
               -not -path "*/__pycache__/*" \
+              -not -path "*/dist/*" \
+              -not -path "*/.git/*" \
+              -not -name "package-lock.json" \
+              -not -name "pnpm-lock.yaml" \
               -print0 2>/dev/null)
+            # Truncate if total is too large (keep under 100KB for API payload)
+            truncate -s '<100000' "$example_files_tmp" 2>/dev/null || head -c 100000 "$example_files_tmp" > "${example_files_tmp}.trunc" && mv "${example_files_tmp}.trunc" "$example_files_tmp"
+            example_files=$(cat "$example_files_tmp")
+            rm -f "$example_files_tmp"
 
             if [ -z "$example_files" ]; then
               echo "WARNING: No source files found in ${example_dir}, skipping."
@@ -183,8 +190,9 @@ jobs:
           SYSPROMPT
           )
 
-            # Construct the messages payload
-            user_message=$(cat <<USERMSG
+            # Construct user message in a temp file (can be large)
+            user_file=$(mktemp)
+            cat > "$user_file" <<USERMSG
           Generate an integration guide for the "${integration}" framework with CopilotKit.
 
           Here is an existing guide for reference (match this format):
@@ -199,20 +207,22 @@ jobs:
 
           ${doc_context:-No additional docs available.}
           USERMSG
-          )
 
-            # Build JSON payload via jq to a temp file (avoids argument list too long)
+            # Build JSON payload via temp files (avoids argument list too long on both jq and curl)
+            system_file=$(mktemp)
             payload_file=$(mktemp)
+            echo "$system_prompt" > "$system_file"
             jq -n \
               --arg model "claude-sonnet-4-20250514" \
-              --arg system "$system_prompt" \
-              --arg user "$user_message" \
+              --rawfile system "$system_file" \
+              --rawfile user "$user_file" \
               '{
                 model: $model,
                 max_tokens: 8192,
                 system: $system,
                 messages: [{ role: "user", content: $user }]
               }' > "$payload_file"
+            rm -f "$system_file" "$user_file"
 
             response=$(curl -sf "https://api.anthropic.com/v1/messages" \
               -H "x-api-key: ${ANTHROPIC_API_KEY}" \
