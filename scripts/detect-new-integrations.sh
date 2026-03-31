@@ -77,7 +77,7 @@ for example_dir in "$EXAMPLES_DIR"/*/; do
     [[ "$name" == "node_modules" ]] && continue
 
     # Resolve directory name to guide name via mapping
-    guide_name="${dir_to_guide[$name]:-$name}"
+    guide_name="${dir_to_guide[$name]-$name}"
 
     # Empty mapping means intentionally skipped (e.g., agent-spec)
     [ -z "$guide_name" ] && continue

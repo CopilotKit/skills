@@ -141,7 +141,11 @@ jobs:
               -not -name "pnpm-lock.yaml" \
               -print0 2>/dev/null)
             # Truncate if total is too large (keep under 100KB for API payload)
-            truncate -s '<100000' "$example_files_tmp" 2>/dev/null || head -c 100000 "$example_files_tmp" > "${example_files_tmp}.trunc" && mv "${example_files_tmp}.trunc" "$example_files_tmp"
+            if [ "$(wc -c < "$example_files_tmp")" -gt 100000 ]; then
+              head -c 100000 "$example_files_tmp" > "${example_files_tmp}.trunc"
+              mv "${example_files_tmp}.trunc" "$example_files_tmp"
+              echo "WARNING: Truncated example files to 100KB for ${integration}"
+            fi
             example_files=$(cat "$example_files_tmp")
             rm -f "$example_files_tmp"
 
