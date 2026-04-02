@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 #
-# install-all.sh
+# setup.sh
 #
 # One-command setup for CopilotKit AI agent skills.
-# Installs both public and internal skills, enables auto-updates.
+# Installs public + internal skills, enables auto-updates,
+# then launches Claude Code to complete onboarding.
 #
 # Usage:
-#   bash <(gh api repos/CopilotKit/internal-skills/contents/scripts/install-all.sh --jq '.content' | base64 -d)
-#
-# Or if you have the repo cloned:
-#   bash scripts/install-all.sh
+#   curl -fsSL https://raw.githubusercontent.com/CopilotKit/skills/main/scripts/setup.sh | bash
 
 set -euo pipefail
 
@@ -21,45 +19,55 @@ echo "Installing CopilotKit/skills (public)..."
 npx skills add copilotkit/skills --full-depth -y
 echo ""
 
-# 2. Install internal skills
+# 2. Install internal skills (requires SSH access to CopilotKit org)
 echo "Installing CopilotKit/internal-skills (private)..."
-npx skills add CopilotKit/internal-skills -y
+npx skills add CopilotKit/internal-skills -y 2>/dev/null || echo "  Skipped — no access to private repo (this is fine for external contributors)"
 echo ""
 
 # 3. Enable auto-updates
-echo "Enabling auto-updates for CopilotKit marketplaces..."
+echo "Enabling auto-updates..."
 SETTINGS_FILE="$HOME/.claude/settings.json"
 
 if [ ! -f "$SETTINGS_FILE" ]; then
+    mkdir -p "$HOME/.claude"
     echo '{}' > "$SETTINGS_FILE"
 fi
 
 python3 << 'PYEOF'
-import json
+import json, os
 
-settings_path = "$HOME/.claude/settings.json".replace("$HOME", __import__("os").path.expanduser("~"))
+settings_path = os.path.expanduser("~/.claude/settings.json")
 with open(settings_path) as f:
     settings = json.load(f)
 
 markets = settings.get("extraKnownMarketplaces", {})
-changes = []
+changed = False
 
 for name in ["copilotkit-plugins", "copilotkit-internal-plugins"]:
     if name in markets and not markets[name].get("autoUpdate"):
         markets[name]["autoUpdate"] = True
-        changes.append(name)
+        changed = True
+        print(f"  Enabled autoUpdate on {name}")
 
-if changes:
+if changed:
     with open(settings_path, "w") as f:
         json.dump(settings, f, indent=2)
-    for c in changes:
-        print(f"  Enabled autoUpdate on {c}")
-else:
+elif markets:
     print("  Auto-updates already configured")
+else:
+    print("  No marketplaces to configure yet (will be set after first plugin install)")
 PYEOF
 
 echo ""
-echo "=== Done ==="
+echo "=== Skills installed ==="
 echo ""
-echo "Start a new Claude Code session. Your skills are ready."
-echo "Say 'onboard me for CopilotKit' for full setup (LSP, plugins, verification)."
+
+# 4. Launch Claude Code to complete onboarding
+if command -v claude &>/dev/null; then
+    echo "Launching Claude Code to complete setup..."
+    echo ""
+    claude "onboard me for CopilotKit"
+else
+    echo "Claude Code not found. After installing it, run:"
+    echo "  claude \"onboard me for CopilotKit\""
+fi
