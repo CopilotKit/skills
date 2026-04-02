@@ -19,9 +19,14 @@ echo "Installing CopilotKit/skills (public)..."
 npx skills add copilotkit/skills --full-depth -y
 echo ""
 
-# 2. Install internal skills (requires SSH access to CopilotKit org)
-echo "Installing CopilotKit/internal-skills (private)..."
-npx skills add CopilotKit/internal-skills -y 2>/dev/null || echo "  Skipped — no access to private repo (this is fine for external contributors)"
+# 2. Install internal skills if user has CopilotKit org access
+if ssh -T git@github.com 2>&1 | grep -qi "authenticated" && \
+   git ls-remote git@github.com:CopilotKit/internal-skills.git HEAD &>/dev/null; then
+    echo "Installing CopilotKit/internal-skills (team member detected)..."
+    npx skills add CopilotKit/internal-skills -y
+else
+    echo "Skipping internal skills (CopilotKit team access not detected)"
+fi
 echo ""
 
 # 3. Enable auto-updates
