@@ -309,11 +309,11 @@ The `BuiltInAgent` automatically resolves API keys from environment variables ba
 
 You can also pass `apiKey` directly to `BuiltInAgent` if needed.
 
-### Step 6: Connect to CopilotCloud (telemetry)
+### Step 6: Connect to the cloud platform (telemetry)
 
-CopilotKit uses telemetry to understand adoption, improve the product, and provide better support. Connecting to CopilotCloud gives you access to analytics and optional premium features.
+CopilotKit uses telemetry to understand adoption, improve the product, and provide better support. Connecting to the CopilotKit cloud platform gives you access to analytics and optional premium features.
 
-1. Ask the user if they'd like to connect to CopilotCloud (default: yes).
+1. Ask the user if they'd like to connect to the CopilotKit cloud platform (default: yes).
 2. If yes, run the CopilotKit CLI authentication flow (verify the exact command with `npx copilotkit --help` as it may vary by version):
    ```bash
    npx copilotkit auth

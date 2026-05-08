@@ -33,7 +33,7 @@ Before proposing any fix, collect:
 
 CopilotKit has three error code systems:
 
-- **V1 `CopilotKitErrorCode`** -- Legacy error codes from the v1 runtime layer (`@copilotkit/runtime`). Codes like `NETWORK_ERROR`, `AGENT_NOT_FOUND`, `API_NOT_FOUND`. Still surfaced in some contexts since `@copilotkit/*` packages wrap v2 internally.
+- **V1 error codes** -- Legacy error codes from the v1 runtime layer (`@copilotkit/runtime`). Codes like `NETWORK_ERROR`, `AGENT_NOT_FOUND`, `API_NOT_FOUND`. Still surfaced in some contexts since `@copilotkit/*` packages wrap v2 internally.
 - **V2 `CopilotKitCoreErrorCode`** -- Used by `@copilotkit/core`. Codes like `runtime_info_fetch_failed`, `agent_connect_failed`, `agent_run_failed`.
 - **`TranscriptionErrorCode`** -- Used by both v1 and v2 for voice transcription. Codes like `service_not_configured`, `rate_limited`, `auth_failed`.
 
