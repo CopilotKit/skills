@@ -10,6 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
+
+      - name: Check if version changed
+        id: vercheck
+        run: |
+          NEW_VER=$(jq -r '.version' .claude-plugin/plugin.json)
+          OLD_VER=$(git show HEAD~1:.claude-plugin/plugin.json 2>/dev/null | jq -r '.version // empty' || echo "")
+          if [ "$NEW_VER" != "$OLD_VER" ] && [ -n "$OLD_VER" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "version=$NEW_VER" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Check if versions are in sync
         id: check
@@ -44,3 +58,89 @@ jobs:
           git add .claude-plugin/marketplace.json
           git commit -m "Sync marketplace.json version to ${{ steps.check.outputs.version }}"
           git push
+
+      - name: Notify Slack
+        if: steps.vercheck.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          VERSION="${{ steps.vercheck.outputs.version }}"
+          WEBHOOK="${{ secrets.SLACK_WEBHOOK_ENGR }}"
+
+          # Skip silently if no webhook configured
+          if [ -z "$WEBHOOK" ]; then
+            echo "No SLACK_WEBHOOK_ENGR configured, skipping notification"
+            exit 0
+          fi
+
+          NOISE_RE='(bump (plugin )?version|sync marketplace|regenerate|release v[0-9])'
+
+          # Gather raw material for summarization
+          PR_TITLES=$(gh pr list --state merged --limit 10 --json title,number \
+            --jq '.[] | "- #\(.number) \(.title)"' 2>/dev/null | grep -viE "$NOISE_RE" | head -5 || echo "")
+          GIT_SUBJECTS=$(git log --oneline -15 --format='%s' 2>/dev/null | grep -viE "$NOISE_RE" | head -5 || echo "")
+
+          BULLETS=""
+
+          # --- Tier 1: Anthropic API summary ---
+          if [ -n "$ANTHROPIC_API_KEY" ] && [ -n "$PR_TITLES$GIT_SUBJECTS" ]; then
+            RAW_CHANGES=""
+            [ -n "$PR_TITLES" ] && RAW_CHANGES="Merged PRs:\n${PR_TITLES}"
+            [ -n "$GIT_SUBJECTS" ] && RAW_CHANGES="${RAW_CHANGES}\nRecent commits:\n${GIT_SUBJECTS}"
+
+            PAYLOAD=$(jq -n \
+              --arg changes "$RAW_CHANGES" \
+              '{
+                model: "claude-haiku-4-5-20251001",
+                max_tokens: 400,
+                system: "Summarize these changes in 2-3 theme-level bullets, max 80 chars each. No preamble.",
+                messages: [{role: "user", content: $changes}]
+              }')
+
+            RESPONSE=$(curl -s --max-time 10 -X POST https://api.anthropic.com/v1/messages \
+              -H "Content-Type: application/json" \
+              -H "x-api-key: $ANTHROPIC_API_KEY" \
+              -H "anthropic-version: 2023-06-01" \
+              -d "$PAYLOAD" 2>/dev/null || echo "")
+
+            if [ -n "$RESPONSE" ]; then
+              CANDIDATE=$(echo "$RESPONSE" | jq -r '.content[0].text // empty' 2>/dev/null || echo "")
+              if [ -n "$CANDIDATE" ]; then
+                BULLET_COUNT=$(echo "$CANDIDATE" | grep -c '^\s*[-•*]' || echo "0")
+                CHAR_COUNT=${#CANDIDATE}
+                if [ "$BULLET_COUNT" -le 4 ] && [ "$CHAR_COUNT" -le 400 ]; then
+                  BULLETS="$CANDIDATE"
+                fi
+              fi
+            fi
+          fi
+
+          # --- Tier 2: Merged PR titles ---
+          if [ -z "$BULLETS" ] && [ -n "$PR_TITLES" ]; then
+            TOTAL=$(echo "$PR_TITLES" | wc -l | tr -d ' ')
+            if [ "$TOTAL" -gt 5 ]; then
+              SHOWN=$(echo "$PR_TITLES" | head -5)
+              EXTRA=$((TOTAL - 5))
+              BULLETS="${SHOWN}\n...and ${EXTRA} more"
+            else
+              BULLETS="$PR_TITLES"
+            fi
+          fi
+
+          # --- Tier 3: Git log subjects ---
+          if [ -z "$BULLETS" ] && [ -n "$GIT_SUBJECTS" ]; then
+            BULLETS=$(echo "$GIT_SUBJECTS" | sed 's/^/- /')
+          fi
+
+          # --- Tier 4: Static fallback ---
+          if [ -z "$BULLETS" ]; then
+            BULLETS="- Updated skills"
+          fi
+
+          # Post to Slack
+          MSG=$(printf '🔄 *copilotkit skills v%s*\n%b\n```claude plugin update copilotkit@copilotkit-plugins\n/reload-plugins```' "$VERSION" "$BULLETS")
+
+          curl -s -X POST "$WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg text "$MSG" '{text: $text}')"
