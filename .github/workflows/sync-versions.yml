@@ -64,9 +64,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_WEBHOOK_ENGR: ${{ secrets.SLACK_WEBHOOK_ENGR }}
         run: |
           VERSION="${{ steps.vercheck.outputs.version }}"
-          WEBHOOK="${{ secrets.SLACK_WEBHOOK_ENGR }}"
+          WEBHOOK="$SLACK_WEBHOOK_ENGR"
 
           # Skip silently if no webhook configured
           if [ -z "$WEBHOOK" ]; then
@@ -77,8 +78,8 @@ jobs:
           NOISE_RE='(bump (plugin )?version|sync marketplace|regenerate|release v[0-9])'
 
           # Gather raw material for summarization
-          PR_TITLES=$(gh pr list --state merged --limit 10 --json title,number \
-            --jq '.[] | "- #\(.number) \(.title)"' 2>/dev/null | grep -viE "$NOISE_RE" | head -5 || echo "")
+          PR_TITLES=$(gh pr list --state merged --limit 20 --json title,number \
+            --jq '.[] | "- #\(.number) \(.title)"' 2>/dev/null | grep -viE "$NOISE_RE" || echo "")
           GIT_SUBJECTS=$(git log --oneline -15 --format='%s' 2>/dev/null | grep -viE "$NOISE_RE" | head -5 || echo "")
 
           BULLETS=""

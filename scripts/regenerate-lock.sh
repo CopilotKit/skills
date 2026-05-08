@@ -88,6 +88,6 @@ if [[ "$CHECK_MODE" == true ]]; then
         exit 1
     fi
 else
-    printf '%s' "$generated" > "$LOCK_FILE"
+    printf '%s\n' "$generated" > "$LOCK_FILE"
     echo "Generated $LOCK_FILE with ${#skills[@]} skill entries."
 fi
