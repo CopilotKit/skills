@@ -1,6 +1,7 @@
 ---
 name: copilotkit-develop
 description: "Use when building AI-powered features with CopilotKit v2 -- adding chat interfaces, registering frontend tools, sharing application context with agents, handling agent interrupts, and working with the CopilotKit runtime."
+version: 1.0.0
 ---
 
 # CopilotKit v2 Development Skill

@@ -1,6 +1,7 @@
 ---
 name: copilotkit-upgrade
 description: "Use when migrating a CopilotKit v1 application to v2 -- updating package imports, replacing deprecated hooks and components, switching from GraphQL runtime to AG-UI protocol runtime, and resolving breaking API changes."
+version: 1.0.0
 ---
 
 # CopilotKit v1 to v2 Migration Skill

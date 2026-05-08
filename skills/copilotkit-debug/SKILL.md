@@ -1,6 +1,7 @@
 ---
 name: copilotkit-debug
 description: "Use when diagnosing CopilotKit issues -- runtime connectivity failures, agent not responding, streaming errors, tool execution problems, transcription failures, version mismatches, and AG-UI event tracing."
+version: 1.0.0
 ---
 
 # CopilotKit Debugging Skill

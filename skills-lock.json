@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "skills": {
+    "copilotkit-agui": {
+      "source": "skills/copilotkit-agui",
+      "sourceType": "local",
+      "computedHash": "3cc15573460e0d6fa184b469b379e742f0d5b19b87460ba0509caa4a5f4c11c8"
+    },
+    "copilotkit-contribute": {
+      "source": "skills/copilotkit-contribute",
+      "sourceType": "local",
+      "computedHash": "0bdc56f7c3d669f24254d03148736fa060932141249ee6401d39ebc956cb5bdc"
+    },
+    "copilotkit-debug": {
+      "source": "skills/copilotkit-debug",
+      "sourceType": "local",
+      "computedHash": "bbe2a1ffd4a9500ca0856287caafb793fe23adcc7e609f5b27166e3c82461349"
+    },
+    "copilotkit-develop": {
+      "source": "skills/copilotkit-develop",
+      "sourceType": "local",
+      "computedHash": "56f7139957881c66531c5b9d655eee7a5485d836c0fb9089e1237a2c85d90d2c"
+    },
+    "copilotkit-integrations": {
+      "source": "skills/copilotkit-integrations",
+      "sourceType": "local",
+      "computedHash": "857f857fef624f6e8ebc4bbaf4c66a5006211c6576c975bcddb571cbc848f236"
+    },
+    "copilotkit-self-update": {
+      "source": "skills/copilotkit-self-update",
+      "sourceType": "local",
+      "computedHash": "008b9a1fc3c57a9c800061da2345fcb02e027009f0cf411a1bd2f3a4797b25ab"
+    },
+    "copilotkit-setup": {
+      "source": "skills/copilotkit-setup",
+      "sourceType": "local",
+      "computedHash": "798538a0cea45e0933d69ff16ecb2b542f35ff5dedcf3b3b6298a0b29150de01"
+    },
+    "copilotkit-upgrade": {
+      "source": "skills/copilotkit-upgrade",
+      "sourceType": "local",
+      "computedHash": "7f17affea623853dfff9c0a5d82830842cfcda0cf98aec3160a3233b230f7d07"
+    }
+  }
+}

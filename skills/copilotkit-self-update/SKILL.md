@@ -1,6 +1,7 @@
 ---
 name: copilotkit-self-update
 description: Use when the user wants to update, refresh, or reinstall the CopilotKit agent SKILLS (the SKILL.md files that teach this agent about CopilotKit). NOT for updating the CopilotKit codebase or project — this is specifically about refreshing the skills/knowledge this agent has loaded. Triggers on "update copilotkit skills", "update skills", "refresh skills", "skills are stale", "skills are outdated", "get latest skills", "my copilotkit knowledge is wrong", "copilotkit APIs changed", "skills seem old", "wrong API names", "reinstall skills", "skills not working right", "update your copilotkit knowledge".
+version: 1.0.0
 user_invocable: true
 argument_hint: ""
 ---

@@ -4,6 +4,7 @@ description: >
   Use when contributing to the CopilotKit open-source project — forking,
   cloning, setting up the monorepo, creating branches, running tests, and
   submitting pull requests against CopilotKit/CopilotKit.
+version: 1.0.0
 ---
 
 # Contributing to CopilotKit

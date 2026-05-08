@@ -1,6 +1,7 @@
 ---
 name: copilotkit-integrations
 description: "Use when wiring an external agent framework (LangGraph, CrewAI, PydanticAI, Mastra, ADK, LlamaIndex, Agno, Strands, Microsoft Agent Framework, or others) into a CopilotKit application via the AG-UI protocol."
+version: 1.0.0
 ---
 
 # CopilotKit Integrations
