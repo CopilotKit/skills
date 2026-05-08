@@ -1,6 +1,7 @@
 ---
 name: copilotkit-agui
 description: "Use when building custom agent backends, implementing the AG-UI protocol, debugging streaming issues, or understanding how agents communicate with frontends. Covers event types, SSE transport, AbstractAgent/HttpAgent patterns, state synchronization, tool calls, and human-in-the-loop flows."
+version: 1.0.0
 ---
 
 # AG-UI Protocol Skill
