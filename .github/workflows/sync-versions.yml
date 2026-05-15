@@ -11,6 +11,7 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: write
     steps:
@@ -59,7 +60,7 @@ jobs:
 
       - name: Configure git credentials for push
         if: steps.check.outputs.synced == 'false'
-        run: git config --global url."https://x-access-token:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
+        run: git config --local url."https://x-access-token:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
