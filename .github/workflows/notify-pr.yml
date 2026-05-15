@@ -21,8 +21,12 @@ jobs:
         run: |
           if [ -z "$SLACK_WEBHOOK" ]; then echo "SLACK_WEBHOOK_OSS_ALERTS not set, skipping"; exit 0; fi
           PAYLOAD=$(jq -n \
-            --arg text "New PR #${PR_NUM} on ${REPO_NAME} by *${PR_AUTHOR}*: <${PR_URL}|${PR_TITLE}>" \
-            '{text: $text}')
+            --arg num "$PR_NUM" \
+            --arg repo "$REPO_NAME" \
+            --arg author "$PR_AUTHOR" \
+            --arg url "$PR_URL" \
+            --arg title "$PR_TITLE" \
+            '{text: ("New PR #" + $num + " on " + $repo + " by *" + $author + "*: <" + $url + "|" + $title + ">")}')
           curl -sf -X POST "$SLACK_WEBHOOK" \
             -H "Content-Type: application/json" \
             -d "$PAYLOAD"
