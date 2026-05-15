@@ -5,13 +5,19 @@ on:
     branches: [main]
     paths: ['.claude-plugin/plugin.json']
 
+permissions:
+  contents: read
+
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 20
+          persist-credentials: false
 
       - name: Check if version changed
         id: vercheck
@@ -45,18 +51,27 @@ jobs:
 
       - name: Update marketplace.json
         if: steps.check.outputs.synced == 'false'
+        env:
+          SYNC_VERSION: ${{ steps.check.outputs.version }}
         run: |
-          version="${{ steps.check.outputs.version }}"
-          jq --arg v "$version" '.metadata.version = $v | .plugins[0].version = $v' \
+          jq --arg v "$SYNC_VERSION" '.metadata.version = $v | .plugins[0].version = $v' \
             .claude-plugin/marketplace.json > tmp.json && mv tmp.json .claude-plugin/marketplace.json
+
+      - name: Configure git credentials for push
+        if: steps.check.outputs.synced == 'false'
+        run: git config --global url."https://x-access-token:$GITHUB_TOKEN@github.com/".insteadOf "https://github.com/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit and push
         if: steps.check.outputs.synced == 'false'
+        env:
+          SYNC_VERSION: ${{ steps.check.outputs.version }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .claude-plugin/marketplace.json
-          git commit -m "Sync marketplace.json version to ${{ steps.check.outputs.version }}"
+          git commit -m "Sync marketplace.json version to ${SYNC_VERSION}"
           git push
 
       - name: Notify Slack
@@ -65,8 +80,8 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SLACK_WEBHOOK_ENGR: ${{ secrets.SLACK_WEBHOOK_ENGR }}
+          VERSION: ${{ steps.vercheck.outputs.version }}
         run: |
-          VERSION="${{ steps.vercheck.outputs.version }}"
           WEBHOOK="$SLACK_WEBHOOK_ENGR"
 
           # Skip silently if no webhook configured
